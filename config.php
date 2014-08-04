@@ -24,7 +24,7 @@ $phpcas_path = './phpCAS/source/';
 ///////////////////////////////////////
 
 // Full Hostname of your CAS Server
-$cas_host = 'https://ssopre.us.es/CAS/index.php';
+$cas_host = 'ssopre.us.es/CAS/index.php';
 
 // Context of the CAS Server
 $cas_context = '/cas';
