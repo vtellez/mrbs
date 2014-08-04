@@ -27,7 +27,7 @@ $phpcas_path = './phpCAS/source/';
 $cas_host = 'ssopre.us.es/CAS/index.php';
 
 // Context of the CAS Server
-$cas_context = '/cas';
+$cas_context = '/CAS/index.php';
 
 // Port of your CAS server. Normally for a https server it's 443
 $cas_port = 443;
