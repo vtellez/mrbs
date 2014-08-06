@@ -127,7 +127,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
             if($count == 0) {
               //Hacemos la reserva
-              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($finicio, $ffin, entry_type, 1, $room['id'], '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
+              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($finicio, $ffin, entry_type, 1, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
             } else {
               //Actualizamos la reserva
               $query = "UDATE mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
