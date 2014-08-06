@@ -186,10 +186,12 @@ if (isset($_REQUEST['logout'])) {
   </table>
 </fieldset>
 
-  <div class="buttons" style="float: right; margin: 30px; clear:both;">
+  <div class="buttons" style="float: none; margin: 30px; clear:both;">
+  <center>
     <button type="submit" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;">
       &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
     </button>
+  </center>
   </div>
 
 <?php }//else ?>
@@ -206,5 +208,3 @@ if (isset($_REQUEST['logout'])) {
 </div>
 </body>
 </html>
-
-

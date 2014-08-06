@@ -253,7 +253,6 @@ input[type=text]:focus, textarea:focus, select:focus{
 
 .buttons a, .buttons button, input[type=submit]{
     display:block;
-    float:left;
 	padding: 8px;
     margin:10px;
     background-color:#eee;
