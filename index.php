@@ -18,7 +18,6 @@ $nombre = phpCAS::getAttribute('cn');
 $doc = phpCAS::getAttribute('irispersonaluniqueid');
 $mail = phpCAS::getAttribute('mail');
 
-//Logout
 if (isset($_REQUEST['logout'])) {
   phpCAS::logout();
 }
@@ -47,47 +46,40 @@ if (isset($_REQUEST['logout'])) {
           <a href="?logout=1" style="font-size: 1.1em; padding: 8px; background-color: #CA4C52; color: #fff;">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>&nbsp;Cerrar sesión&nbsp;&nbsp;</a>
         </div> 
 <?php
-
   if($_POST['oculto'] == "1"){
 
-  $error = false;
+      $error = false;
 
-  if ($_POST['puesto'] == "" || $_POST['centro'] == ""){
-    $error = true;
-  }else {
-    //Manage CSV upload
-    if(!empty($_FILES['file'])) {
-      $name=$_FILES['file']['name'];
-      $size=$_FILES['file']['size'];
-      $type=$_FILES['file']['type'];
-      $tmp_name=$_FILES['file']['tmp_name'];
-      $error=$_FILES['file']['error'];
-      $maxsize ="51200";
-      $location='/var/www/html/reservas/areasalud/pod/temp/';
-
-      $final_name = time()."_".$uvus.".csv";
-
-      if(move_uploaded_file($tmp_name, $location.$final_name)) {
-
-        $res = parseFile($location.$final_name);
-
-        if(!$res){
-          $error = true;
-        } else {
-          list($done, $warnings, $critical) = $res;
-        }
-
-      } else {
+      if ($_POST['puesto'] == "" || $_POST['centro'] == ""){
         $error = true;
-      }
+      }else {
+          //Manage CSV upload
+          if(!empty($_FILES['file'])) {
+            $name=$_FILES['file']['name'];
+            $size=$_FILES['file']['size'];
+            $type=$_FILES['file']['type'];
+            $tmp_name=$_FILES['file']['tmp_name'];
+            $error=$_FILES['file']['error'];
+            $maxsize ="51200";
+            $location='/var/www/html/reservas/areasalud/pod/temp/';
+            $final_name = time()."_".$uvus.".csv";
 
-    }  
+            if(move_uploaded_file($tmp_name, $location.$final_name)) {
+              $res = parseFile($location.$final_name);
+              if(!$res){
+                $error = true;
+              } else {
+                list($done, $warnings, $critical) = $res;
+              }
 
-
+          } else {
+            $error = true;
+          }
+      }  
   }
 
-  if($error){
-  ?>
+  if($error) {
+?>
 
         <fieldset>
           <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
