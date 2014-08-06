@@ -79,18 +79,18 @@ if (isset($_REQUEST['logout'])) {
         {
           $line = rtrim($line);
           $errorline = false;
-
           $actual_line = "LINEA ".$cont." =>  ";
-
           $components = split(",",$line);
 
           if(count($components) == 9){
 
-            $done .= $actual_line.$line."\n";
+            list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = $components;
+
 
           } elseif (count($components) == 10) {
-
-            $warnings .= $actual_line.$line."\n";
+            list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = 
+            array($components[0],$components[1],$components[2]." ".$components[3],$components[4],$components[5],$components[6],$components[7],$components[8],$components[9], );
+            $warnings .= $actual_line.$prof."\n";
 
           } else {
             $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n\n";
@@ -99,7 +99,7 @@ if (isset($_REQUEST['logout'])) {
 
 
           if(!$errorline) {
-
+            $done .= $actual_line.$prof."\n";
           }
 
           $cont++;
