@@ -14,7 +14,7 @@ function parseFile ($file) {
   if(!$link) 
     return false;
  
-  $bdselected = mysqli_select_db($bdname);
+  $bdselected = mysqli_select_db($bdname, $link);
   if(!$bdselected) 
     return false;
 
