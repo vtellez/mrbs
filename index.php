@@ -55,7 +55,7 @@ if (isset($_REQUEST['logout'])) {
     $error = true;
   }else {
     //Manage CSV upload
-    if(isset($_FILES['file']['name']) && !empty($_FILES['file']['name'])) {
+    if(isset($_FILES['file']['tmp_name']) && !empty($_FILES['file']['tmp_name'])) {
       $name=$_FILES['file']['name'];
       $size=$_FILES['file']['size'];
       $type=$_FILES['file']['type'];
@@ -78,17 +78,28 @@ if (isset($_REQUEST['logout'])) {
         foreach($lines as $line_num => $line)
         {
           $line = rtrim($line);
+          $errorline = false;
+
           $actual_line = "LINEA ".$cont." =>  ";
 
           $components = split(",",$line);
 
           if(count($components) == 9){
+
             $done .= $actual_line.$line."\n";
+
           } elseif (count($components) == 10) {
+
             $warnings .= $actual_line.$line."\n";
-            # code...
+
           } else {
             $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n\n";
+            $errorline = true;
+          }
+
+
+          if(!$errorline) {
+            
           }
 
           $cont++;
