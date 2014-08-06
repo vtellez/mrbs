@@ -12,7 +12,7 @@ function parseFile ($file) {
   //Abrimos conexión con la base de datos
   $link = mysql_connect($bdhost, $bduser, $bdpass);
 
-  mysql_select_db($bdname) or die('No se pudo seleccionar la base de datos');
+  mysql_select_db($bdname) or return false;
 
 
   $done = "";
