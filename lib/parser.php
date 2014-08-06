@@ -36,6 +36,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
     $errorline = false;
     $actual_line = "LINEA ".$cont." =>  ";
     $components = split(",",$line);
+    $components= array_map('trim', $components);
 
     if (count($components) == 9){
       list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = $components;
