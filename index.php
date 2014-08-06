@@ -76,7 +76,7 @@ if (isset($_REQUEST['logout'])) {
 
         foreach($lines as $line_num => $line)
         {
-          $done .= "LINEA $line_num =>  ".$line."\n";
+          $done .= "LINEA $line_num =>  ".$line;
         }
 
 
