@@ -72,7 +72,7 @@ if (isset($_REQUEST['logout'])) {
       <div id="main">
     <img src="css/img/logo.png" style="margin-top: -10px;">
     
-<br/><p><h3 style="clear:both; float: right; padding:20px;"><a href="?logout=1">Cerrar sesión</a></h3></p>
+<br/><p><h3 style="clear:both; float: right; padding:20px; padding-right: 40px;"><a href="?logout=1">Cerrar sesión</a></h3></p>
 
 <?php
 
