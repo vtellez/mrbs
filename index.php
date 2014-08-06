@@ -53,6 +53,7 @@ if (isset($_REQUEST['logout'])) {
   <body>
     <h1>Successfull Authentication!</h1>
     <p>the user's login is <b><?php echo phpCAS::getUser(); ?></b>.</p>
+    <p><?php print_r(phpCAS::getAttributes());?></p>
     <p>phpCAS version is <b><?php echo phpCAS::getVersion(); ?></b>.</p>
     <p><a href="?logout=">Logout</a></p>
   </body>
