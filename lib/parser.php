@@ -72,6 +72,8 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             //Comprobamos si ya existía una reserva
             $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
 
+            $count = 0;
+
             if($count == 0) {
               //Hacemos la reserva
               $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, repeat_id, room_id, timestamp, $pod_user_id, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
