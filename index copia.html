@@ -211,7 +211,9 @@ if (isset($_REQUEST['logout'])) {
 </fieldset>
 <br/>
   <div class="buttons" style="float: right; margin: 20px; clear:both;">
-  <input type="submit" value="Realizar solicitud de reservas" style="font-size: 1.4em; padding: 25px; background-color: #5BAF4B; color: #fff;" />
+    <button type="submit" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;">
+      &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
+    </button>
   </div>
 
 <?php }//else ?>
