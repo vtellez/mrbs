@@ -189,7 +189,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
 function isValidTimeStamp($timestamp)
 {
-    return ((string) (int) $timestamp === $timestamp) 
-        && ($timestamp <= PHP_INT_MAX)
-        && ($timestamp >= ~PHP_INT_MAX);
+    if(strtotime(date('d-m-Y H:i:s',$timestamp)) === (int)$timestamp) {
+        return $timestamp;
+    } else return false;
 }
