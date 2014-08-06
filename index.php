@@ -41,9 +41,9 @@ phpCAS::forceAuthentication();
 // and the user's login name can be read with phpCAS::getUser().
 
 // logout if desired
-// if (isset($_REQUEST['logout'])) {
-// 	phpCAS::logout();
-// }
+if (isset($_REQUEST['logout'])) {
+	phpCAS::logout();
+}
 
 ?>
 <html>
