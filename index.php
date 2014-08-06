@@ -80,9 +80,9 @@ if (isset($_REQUEST['logout'])) {
 
           $components = split(",",$line);
 
-          if(sizeof($components) == 9){
+          if(count($components) == 9){
             $done .= $actual_line.$line;
-          } elseif (sizeof($components) == 10) {
+          } elseif (count($components) == 10) {
             $warnings .= $actual_line.$line;
             # code...
           } else {
