@@ -77,18 +77,18 @@ if (isset($_REQUEST['logout'])) {
         $cont = 1;
         foreach($lines as $line_num => $line)
         {
-
+          $line = rtrim($line);
           $actual_line = "LINEA ".$cont." =>  ";
 
           $components = split(",",$line);
 
           if(count($components) == 9){
-            $done .= $actual_line.$line;
+            $done .= $actual_line.$line."\n";
           } elseif (count($components) == 10) {
-            $warnings .= $actual_line.$line;
+            $warnings .= $actual_line.$line."\n";
             # code...
           } else {
-            $critical .= $actual_line.$line."MOTIVO: Formato de línea incorrecto.\n\n";
+            $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n\n";
           }
 
           $cont++;
