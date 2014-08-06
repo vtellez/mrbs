@@ -110,23 +110,23 @@ if (isset($_REQUEST['logout'])) {
           <br/>
           <h3 style="color: #328113;"><i class="fa fa-check"></i>&nbsp; Reservas confirmadas:</h3>
           <textarea rows="10" style="width: 100%;">
-ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
-ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
+LINEA N =>  ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
           </textarea>
 
           <br/>
@@ -134,23 +134,23 @@ ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y
           <br/>
           <h3 style="color:#F89200;"><i class="fa fa-warning"></i>&nbsp; Reservas NO realizadas por ocupación:</h3>
           <textarea rows="10" style="width: 100%;">
-ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
-ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
+LINEA N =>  ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
           </textarea>
 
 
@@ -159,23 +159,23 @@ ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y
           <br/>
           <h3 style="color:#B24747;"><i class="fa fa-times"></i>&nbsp;Reservas NO realizadas por errores fatales:</h3>
           <textarea rows="10" style="width: 100%;">
-ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
-ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
+LINEA N =>  ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350002;Enfermería Comunitaria I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350015;Enfermería Comunitaria II;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350022;Enfermería Comunitaria III;S;A1;1;11;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350033;Enfermería en Situaciones de Urgencias y Emergencias Sanitarias;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350024;Enfermería Geriátrica;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350020;Enfermería Ginecológica y Planifinicación Familiar;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350013;Enfermería Materno-Infantil;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350014;Enfermería Médico-Quirúrgica I;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
+LINEA N =>  ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
           </textarea>
           
         </fieldset>
