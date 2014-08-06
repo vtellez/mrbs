@@ -50,14 +50,8 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
     if (!$errorline) {
       //Comprobamos que exista el aula
-      $existe_aula = true;
-
       $query = "SELECT * FROM mrbs_room WHERE room_name = '".$aula."'";
       $result = $mysqli->query($query);
-
-      while($row = $result->fetch_assoc()){
-          echo $row['count'] . '<br />';
-      }
 
       if ($result->num_rows < 1) {
         $critical .= $actual_line.$line." (MOTIVO: El aula '$aula' no existe en el sistema.)\n\n";
@@ -79,16 +73,22 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
             $count = 0;
 
+
+            // while($row = $result->fetch_assoc()){
+            //     echo $row['count'] . '<br />';
+            // }
+
+
             if($count == 0) {
               //Hacemos la reserva
-              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, repeat_id, room_id, timestamp, $pod_user_id, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
+              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, 1, room_id, timestamp, $pod_user_id, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
             } else {
               //Actualizamos la reserva
               $query = "UDATE mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
             }
 
             // $result = $mysqli->query($query); 
-            $done .= $actual_line.$line."\n";
+            $done .= $actual_line.$line."Produce: $query\n";
           }
       }
     }
