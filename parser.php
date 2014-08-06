@@ -11,12 +11,14 @@ function parseFile ($file) {
 
   //Abrimos conexión con la base de datos
   $link = mysqli_connect($bdhost, $bduser, $bdpass);
-  if(!$link) 
+  if(!$link) {
     return false;
- 
-  $bdselected = mysqli_select_db($bdname, $link);
-  if(!$bdselected) 
-    return false;
+  } else {
+    $bdselected = mysqli_select_db($bdname, $link);
+    if(!$bdselected) 
+      return false;    
+  }
+
 
   $done = "";
   $warnings = "";
