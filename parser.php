@@ -1,6 +1,6 @@
 <?php
 
-require_once 'database.php';
+include_once 'database.php';
 
 function parseFile ($file) {
   //Comprobamos que existe el fichero
