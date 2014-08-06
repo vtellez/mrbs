@@ -62,7 +62,7 @@ if (isset($_REQUEST['logout'])) {
           <ul style="font-size: 1.3em;">
             <li>El campo <b>Puesto</b> debe tener un valor.</li>
             <li>El campo <b>Centro</b> debe tener un valor.</li>
-            <li>El fichero debe tener formato <b>CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
+            <li>El fichero debe tener <b>formato CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
             <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
           </ul>
           <p style="font-size: 1.3em;"> Por favor revise que cumple todos estos requisitos para poder continuar.</p>
@@ -214,7 +214,7 @@ LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
           <p style="clear:both; font-size: 1.2em;">Consulte, si lo desea, la <a href="doc/userdoc.pdf" target="_blank">documentación del formato del fichero CSV</a> </p>
           
            <label>Fichero CSV</label>
-          <input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
+          <input type="file" name="file" id="file" />
 
           <br/><br/><br/>
         </td>
