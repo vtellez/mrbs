@@ -58,9 +58,14 @@ if (isset($_REQUEST['logout'])) {
   ?>
 
         <fieldset>
-          <h2><i class="fa fa-times"></i>&nbsp;Faltan datos en el formulario</h2>
-          <p style="font-size: 1.3em;">Se ha detectado que ciertos campos del formulario no tenían un valor especificado.</p>
-          <p style="font-size: 1.3em;"> Por favor rellene todos los datos del formulario para que pueda enviarse la solicitud.</p>
+          <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
+          <ul style="font-size: 1.3em;">
+            <li>El campo <b>Puesto</b> debe tener un valor.</li>
+            <li>El campo <b>Centro</b> debe tener un valor.</li>
+            <li>El fichero debe tener formato <b>CSV</b>.</li>
+            <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
+          </ul>
+          <p style="font-size: 1.3em;"> Por favor revise que cumple todos estos requisitos para poder realizar las reservas.</p>
         </fieldset>
 
           <div class="buttons" style="margin: 30px; clear:both;">
@@ -100,7 +105,7 @@ if (isset($_REQUEST['logout'])) {
         ?>
         <fieldset>
           <h2 style="color: #328113;"><i class="fa fa-check"></i>&nbsp;Reservas realizadas con éxito</h2>
-          <p style="font-size: 1.3em;">Se ha enviado con éxito la siguiente solicitud. Recibirá una notificación en su cuenta de correo (<?php echo $mail; ?>) cuando ésta sea procesada.</p><br/>
+          <p style="font-size: 1.3em;">Las reservas solicitadas se han realizado con éxito en el sistema mrbs de la Universidad, se le ha enviado un email como acuse de recibo a su cuenta de correo (<?php echo $mail; ?>).</p><br/>
           <p><?php echo $out; ?></p>
         </fieldset>
 
@@ -148,7 +153,7 @@ if (isset($_REQUEST['logout'])) {
           <label>Puesto que ocupa</label>
           <input type="text" name="puesto" maxlength="150" size="50" style="width:50%"  value=""/>
           <br/><br/>
-          <label>Servicio/Centro/Depto./Grupo</label>
+          <label>Servicio/Centro/Depto.</label>
           <input type="text" name="centro" maxlength="150" size="50" style="width:50%"  value=""/>
           <br/><br/>
           <div class="content-separator"></div>
