@@ -1,7 +1,6 @@
 <?php
 
-function parseFile ($file) {
-
+function parseFile ($file) {
   $done = "";
   $warnings = "";
   $critical = "";
