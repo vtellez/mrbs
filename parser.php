@@ -1,8 +1,8 @@
 <?php
 
+require_once 'database.php';
 
 function parseFile ($file) {
-
   //Comprobamos que existe el fichero
   if (!file_exists($file)) {
     return false;
