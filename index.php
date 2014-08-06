@@ -111,7 +111,7 @@ if (isset($_REQUEST['logout'])) {
 
         <div class="buttons" style="margin: 30px; clear:both;">
           <center>
-            <button style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+            <button onClick="location.href='index.php'" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
               &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Nueva solicitud de reservas&nbsp;&nbsp;
             </a>
           </button>
