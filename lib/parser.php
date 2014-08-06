@@ -55,7 +55,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $result = $mysqli->query($query);
 
       if ($result->num_rows != 1) {
-        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema.\n\n";
+        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema. $result->num_rows\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
