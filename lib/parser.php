@@ -48,6 +48,20 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $errorline = true;
     }
 
+    if(!$errorline){
+      //calculate timestamps
+      $date = $dia; // ej. 25/05/2010
+      $date = str_replace('/', '-', $date);
+      $date =  date('Y-m-d', strtotime($date)); // ej. 2010-05-25
+      $tinicio = strtotime('2012-07-25 '.$finicio );
+      $tfin = strtotime('2012-07-25 '.$ffin );
+
+      if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin)) {
+          $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
+          $errorline = true;
+      }
+    }
+
     if (!$errorline) {
       //Comprobamos que exista el aula
 
@@ -136,13 +150,6 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             // | 41 | 1382434200 | 1382437800 |          1 |         1 |     123 | 2013-10-16 18:57:13 | rsierra   | test-borrar      | borrar      | B    | test-borrar             |                 |      0 |     NULL |      NULL | NULL      | NULL      | MRBS-525ec55fc1a72-69227c49@apoyotic.us.es |             0 | 20131022T093000Z |
             // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
 
-            //calculate timestamps
-            $date = $dia; // ej. 25/05/2010
-            $date = str_replace('/', '-', $date);
-            $date =  date('Y-m-d', strtotime($date)); // ej. 2010-05-25
-            $tinicio = strtotime('2012-07-25 '.$finicio );
-            $tfin = strtotime('2012-07-25 '.$ffin );
-
             if($count == 0) {
               //Hacemos la reserva
               $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 1, 1, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
@@ -170,4 +177,17 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
   $mysqli->close();
 
   return array($done, $warnings, $critical);
+}
+
+
+
+
+
+
+
+function isValidTimeStamp($timestamp)
+{
+    return ((string) (int) $timestamp === $timestamp) 
+        && ($timestamp <= PHP_INT_MAX)
+        && ($timestamp >= ~PHP_INT_MAX);
 }
