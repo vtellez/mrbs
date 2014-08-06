@@ -60,6 +60,7 @@ if (isset($_REQUEST['logout'])) {
   <meta name="author" content="Víctor Téllez tellez.victor@gmail.com">
   <link href="css/css.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" type="text/css" href="css/estilo.css" media="screen">
+  <link link rel="stylesheet" href="css/awesome/css/font-awesome.min.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="css/img/favicon.ico">
 
   <title>Reserva de aulas online | Universidad de Sevilla</title>
@@ -73,7 +74,7 @@ if (isset($_REQUEST['logout'])) {
     <img src="css/img/logo.png" style="margin-top: -10px;">
     
  <div class="buttons" style="clear:both; float: right; padding:0px; padding-right: 30px;">
-  <a href="?logout=1" style="font-size: 1.1em; padding: 8px; background-color: #CA4C52; color: #fff;">&nbsp;&nbsp;Cerrar sesión&nbsp;&nbsp;</a>
+  <a href="?logout=1" style="font-size: 1.1em; padding: 8px; background-color: #CA4C52; color: #fff;">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>&nbsp;Cerrar sesión&nbsp;&nbsp;</a>
   </div> 
 
 
@@ -168,7 +169,7 @@ if (isset($_REQUEST['logout'])) {
 <form method="POST" enctype="multipart/form-data" action="index.php" >
 <input type="hidden" name="oculto" value="1" />
 
-        <h2>Datos del solicitante</h2><br/>
+        <h2><i class="fa fa-user"></i>&nbsp;Datos del solicitante</h2><br/>
 
         <label>UVUS</label>
         <input type="text" name="uvus" maxlength="150" size="50" style="width:50%"  value="<?php echo $uvus; ?>" readonly="readonly"/>
@@ -195,7 +196,7 @@ if (isset($_REQUEST['logout'])) {
         <br/><br/>
 
   <div class="content-separator"></div>
-  <h2>Fichero de reservas</h2><br/>
+  <h2><i class="fa fa-file"></i>&nbsp; Fichero de reservas</h2><br/>
         <label>Fichero CSV</label>
         <input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
         <br/><br/>

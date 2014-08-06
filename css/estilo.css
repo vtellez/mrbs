@@ -49,7 +49,7 @@ body {
 /* Font */
 
 h2{
-	text-shadow: 4px 4px 4px #aaa;
+	text-shadow: 1px 1px 1px #aaa;
 }
 
 
@@ -69,7 +69,7 @@ h3 a{
 
 
 h1 {font-size: 2.6em;}
-h2 {font-size: 2.5em; font-family: 'Josefin Sans Std Light', serif; color:#555;}
+h2 {font-size: 2.5em; font-family: 'Josefin Sans Std Light', serif; color:#B24747; margin-bottom: 20px; margin-top: 30px;}
 h3 {font-size: 1.40em;}
 h4 {font-size: 1.25em;}
 h5 {font-size: 1.1em;}
