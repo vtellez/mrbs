@@ -50,33 +50,28 @@ if (isset($_REQUEST['logout'])) {
   if($_POST['oculto'] == "1"){
 
       $error = false;
+      //Manage CSV upload
+      if(!empty($_FILES['file'])) {
+        $name=$_FILES['file']['name'];
+        $size=$_FILES['file']['size'];
+        $type=$_FILES['file']['type'];
+        $tmp_name=$_FILES['file']['tmp_name'];
+        $error=$_FILES['file']['error'];
+        $maxsize ="51200";
+        $location='/var/www/html/reservas/areasalud/pod/temp/';
+        $final_name = time()."_".$uvus.".csv";
 
-      if ($_POST['puesto'] == "" || $_POST['centro'] == ""){
-        $error = true;
-      }else {
-          //Manage CSV upload
-          if(!empty($_FILES['file'])) {
-            $name=$_FILES['file']['name'];
-            $size=$_FILES['file']['size'];
-            $type=$_FILES['file']['type'];
-            $tmp_name=$_FILES['file']['tmp_name'];
-            $error=$_FILES['file']['error'];
-            $maxsize ="51200";
-            $location='/var/www/html/reservas/areasalud/pod/temp/';
-            $final_name = time()."_".$uvus.".csv";
-
-            if(move_uploaded_file($tmp_name, $location.$final_name)) {
-              $res = parseFile($location.$final_name, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id);
-              if(!$res){
-                $error = true;
-              } else {
-                list($done, $warnings, $critical) = $res;
-              }
-
-          } else {
+        if(move_uploaded_file($tmp_name, $location.$final_name)) {
+          $res = parseFile($location.$final_name, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id);
+          if(!$res){
             $error = true;
+          } else {
+            list($done, $warnings, $critical) = $res;
           }
-      }  
+
+      } else {
+        $error = true;
+      }
   }
 
   if($error) {
@@ -191,13 +186,6 @@ if (isset($_REQUEST['logout'])) {
           <br/><br/>
           <label>Dirección de correo</label>
           <input type="text" name="correo" maxlength="150" size="50" style="width:50%"  value="<?php echo $mail; ?>" readonly="readonly"/>
-          <br/><br/>
-          <label>Puesto que ocupa</label>
-          <input type="text" name="puesto" maxlength="150" size="50" style="width:50%"  value=""/>
-          <br/><br/>
-          <label>Servicio/Centro/Depto.</label>
-          <input type="text" name="centro" maxlength="150" size="50" style="width:50%"  value=""/>
-          <br/><br/>
           <div class="content-separator"></div>
           <h2><i class="fa fa-file"></i>&nbsp; Fichero de reservas</h2><br/>
 
