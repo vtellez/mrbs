@@ -1,6 +1,6 @@
 <?php
 
-require "configUS.php";
+require_once "configUS.php";
 
 function parseFile ($file) {
 
