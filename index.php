@@ -101,7 +101,7 @@ if (isset($_REQUEST['logout'])) {
   //enviamos por correo la solicitud
 
   $headers =
-                "From: pod-salud <pod-salud@us.es>\n".
+                "From: Reserva de aulas online <pod-salud@us.es>\n".
                 "Reply-to: reservaulamacarena@listas.us.es\n".
                 "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
                 "Content-Transfer-Encoding: 8bit";
@@ -194,9 +194,9 @@ if (isset($_REQUEST['logout'])) {
 
 <?php }//else ?>
 
-<div style="clear:both;">
+<div style="clear:both; font-size: 1.2em;">
   <center>
-    <a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> - <a href="http://www.us.es/">Universidad de Sevilla</a> 
+    <a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> <br/> <a href="http://www.us.es/">Universidad de Sevilla</a> 
   </center> 
 </div>  
         </div>
