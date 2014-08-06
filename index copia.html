@@ -212,7 +212,7 @@ if (isset($_REQUEST['logout'])) {
           <div class="content-separator"></div>
           <h2><i class="fa fa-file"></i>&nbsp; Fichero de reservas</h2><br/>
 
-          <p style="clear:both; font-size: 1.2em;">Consulte si lo necesita la <a href="doc/userdoc.pdf" target="_blank">documentación del formato del fichero CSV</a> </p>
+          <p style="clear:both; font-size: 1.2em;">Consulte, si lo desea, la <a href="doc/userdoc.pdf" target="_blank">documentación del formato del fichero CSV</a> </p>
           
            <label>Fichero CSV</label>
           <input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
