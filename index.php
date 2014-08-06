@@ -1,26 +1,6 @@
 <?php
-// include('libopensso-php/OpenSSO.php');
-// $o = new OpenSSO();
-// $res1 = $o->check_and_force_sso();
-
-
-// if($res1 == false)
-// {
-//         echo "ERROR: No se pudo establecer una conexión con el sistema Single Sign-On";
-//         exit();
-// }
-
-// if($_GET['logout'] == 1){
-//  $o->logout(TRUE);
-// }
-
-// Load the settings from the central config file
 require_once 'config.php';
-// Load the CAS lib
 require_once $phpcas_path . '/CAS.php';
-
-// Enable debugging
-// phpCAS::setDebug();
 
 // Initialize phpCAS
 phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
@@ -34,19 +14,13 @@ phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 // VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL!
 phpCAS::setNoCasServerValidation();
 
-// force CAS authentication
 phpCAS::forceAuthentication();
-
-// at this step, the user has been authenticated by the CAS server
-// and the user's login name can be read with phpCAS::getUser().
-
 $uvus = phpCAS::getAttribute('uid');
 $nombre = phpCAS::getAttribute('cn');
 $doc = phpCAS::getAttribute('irispersonaluniqueid');
 $mail = phpCAS::getAttribute('mail');
 
-
-// logout if desired
+//Logout
 if (isset($_REQUEST['logout'])) {
   phpCAS::logout();
 }
@@ -93,6 +67,8 @@ if (isset($_REQUEST['logout'])) {
   if ($_POST['puesto'] == "" || $_POST['centro'] == "" || $_POST['nombrelista'] == "" ){
     $error = true;
   }
+
+    $error = false;
 
   if($error){
   ?>
