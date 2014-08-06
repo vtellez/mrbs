@@ -60,7 +60,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       }
 
       if ($result->num_rows < 1) {
-        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema. $query\n\n";
+        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema.\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
@@ -88,7 +88,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             }
 
             // $result = $mysqli->query($query); 
-            $done .= $actual_line.$line." ".$query."\n";
+            $done .= $actual_line.$line."\n";
           }
       }
     }
