@@ -172,7 +172,7 @@ if (isset($_REQUEST['logout'])) {
         <br/><br/>
 
         <label>Nombre completo</label>
-        <input type="text" name="nombre" maxlength="150" size="50" style="width:50%"  value="<?php echo $name; ?>" readonly="readonly"/>
+        <input type="text" name="nombre" maxlength="150" size="50" style="width:50%"  value="<?php echo $nombre; ?>" readonly="readonly"/>
         <br/><br/>
 
         <label>DNI/PASAPORTE</label>
