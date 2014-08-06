@@ -34,6 +34,7 @@ if (isset($_REQUEST['logout'])) {
   <link link rel="stylesheet" href="css/awesome/css/font-awesome.min.css" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="css/img/favicon.ico">
   <title>Reserva de aulas online | Universidad de Sevilla</title>
+  <script src="js/jquery-1.10.2.min.js"></script>
 </head>
 <body>
 <div id="content-wrapper">
@@ -52,6 +53,32 @@ if (isset($_REQUEST['logout'])) {
 
   if ($_POST['puesto'] == "" || $_POST['centro'] == ""){
     $error = true;
+  }else {
+    //Manage CSV upload
+    if(isset($_FILES['file']['name']) && !empty($_FILES['file']['name'])) {
+      $name=$_FILES['file']['name'];
+      $size=$_FILES['file']['size'];
+      $type=$_FILES['file']['type'];
+      $tmp_name=$_FILES['file']['tmp_name'];
+      $error=$_FILES['file']['error'];
+      $maxsize ="512";
+      $location='/var/www/html/reservas/areasalud/pod/temp/';
+
+      $final_name = time()."_".$uvus.".csv";
+
+     if($size <= maxsize) {
+        if(move_uploaded_file($tmp_name, $location.$final_name)) {
+            echo "SUBIDO!";
+        } else {
+          $error = true;
+        }
+      } else {
+        $error = true;
+      }
+
+    }  
+
+
   }
 
   if($error){
@@ -224,16 +251,19 @@ LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
 
   <div class="buttons" style="margin: 30px; clear:both;">
     <center>
-      <button type="submit" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;">
+      <button type="submit" id="sendbtn" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;" onclick="$('#sendbtn').hide(); $('#loadingbtn').show();">
         &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
+      </button>
+
+</form>
+
+      <button id="loadingbtn" disabled="disabled" style="display: none; height: 70px; font-size: 1.4em; background-color: #78C969; color: #fff;">
+        &nbsp;&nbsp;<i class="fa fa-spinner fa-spin" style="font-size: 25px;"></i>&nbsp;&nbsp;Enviando fichero CSV&nbsp;&nbsp;
       </button>
     </center>
   </div>
 
-</form>
 <?php }//else ?>
-
-
 
 <div style="clear:both; font-size: 1.2em;">
   <center>
