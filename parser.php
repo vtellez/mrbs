@@ -10,15 +10,9 @@ function parseFile ($file) {
   }
 
   //Abrimos conexión con la base de datos
-  $mysqli = new mysqli("localhost", "my_user", "my_password", "world");
+  $mysqli = new mysqli($bdhost, $bduser, $bdpass, $bdname);
  
   if($mysqli->connect_errno) {
-    return false;
-  }
-
-  $connectedbd = $mysqli->select_db($bdname);
-
-  if(!$connectedbd){
     return false;
   }
 
