@@ -89,7 +89,7 @@ if (isset($_REQUEST['logout'])) {
 
           } elseif (count($components) == 10) {
             list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = 
-            array($components[0],$components[1],$components[2]." ".$components[3],$components[4],$components[5],$components[6],$components[7],$components[8],$components[9], );
+            array($components[0],$components[1],$components[3]." ".$components[2],$components[4],$components[5],$components[6],$components[7],$components[8],$components[9], );
             $warnings .= $actual_line.$prof."\n";
 
           } else {
