@@ -73,7 +73,7 @@ if (isset($_REQUEST['logout'])) {
           $error = true;
         }
       } else {
-        $error = true;
+        // $error = true;
       }
 
     }  
