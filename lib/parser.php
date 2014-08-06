@@ -51,7 +51,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       //Comprobamos que exista el aula
       $existe_aula = true;
 
-      $query = "SELECT * FROM mrbs_room WHERE room_name = '$aula'";
+      $query = "SELECT COUNT(*) as count FROM mrbs_room WHERE room_name = '3B O'";
       $result = $mysqli->query($query);
 
       if ($result->num_rows != 1) {
