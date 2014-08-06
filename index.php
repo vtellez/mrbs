@@ -77,18 +77,18 @@ if (isset($_REQUEST['logout'])) {
         foreach($lines as $line_num => $line)
         {
 
-          $actual_line = "LINEA ".$line_num + 1." =>  "
+          $actual_line = "LINEA ".$line_num + 1." =>  ";
 
           $components = split(",",$line);
 
-          // if(count($components) == 9){
-          //   $done .= $actual_line.$line;
-          // } elseif (count($components) == 10) {
-          //   $warnings .= $actual_line.$line;
-          //   # code...
-          // } else {
-          //   $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n";
-          // }
+          if(count($components) == 9){
+            $done .= $actual_line.$line;
+          } elseif (count($components) == 10) {
+            $warnings .= $actual_line.$line;
+            # code...
+          } else {
+            $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n";
+          }
 
         } //foreach
 
