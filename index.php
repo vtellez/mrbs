@@ -62,7 +62,7 @@ if (isset($_REQUEST['logout'])) {
           <ul style="font-size: 1.3em;">
             <li>El campo <b>Puesto</b> debe tener un valor.</li>
             <li>El campo <b>Centro</b> debe tener un valor.</li>
-            <li>El fichero debe tener formato <b>CSV</b>.</li>
+            <li>El fichero debe tener formato <b>CSV</b> válido (<a href="#">ver documentación</a>).</li>
             <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
           </ul>
           <p style="font-size: 1.3em;"> Por favor revise que cumple todos estos requisitos para poder realizar las reservas.</p>
