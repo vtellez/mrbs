@@ -160,7 +160,6 @@ if (isset($_REQUEST['logout'])) {
             ","\n\n",$out); $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada en https://listas.us.es/solicitud/\n\n\n".$output; $title = "Nueva reserva de aulas online (por ".$uvus.")"; // mail("vtellez-ext@us.es",$title,$output,$headers); ?>
           </textarea>
           
-          <p><?php echo $out; ?></p>
         </fieldset>
 
         <div class="buttons" style="margin: 30px; clear:both;">
