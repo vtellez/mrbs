@@ -61,7 +61,7 @@ if (isset($_REQUEST['logout'])) {
       $type=$_FILES['file']['type'];
       $tmp_name=$_FILES['file']['tmp_name'];
       $error=$_FILES['file']['error'];
-      $maxsize ="512";
+      $maxsize ="51200";
       $location='/var/www/html/reservas/areasalud/pod/temp/';
 
       $final_name = time()."_".$uvus.".csv";
