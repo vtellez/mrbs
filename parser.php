@@ -9,6 +9,12 @@ function parseFile ($file) {
     return false;
   }
 
+  //Abrimos conexión con la base de datos
+  $link = mysql_connect($bdhost, $bduser, $bdpass);
+    or die('No se pudo conectar: ' . mysql_error());
+
+  mysql_select_db($bdname) or die('No se pudo seleccionar la base de datos');
+
 
   $done = "";
   $warnings = "";
@@ -36,24 +42,36 @@ function parseFile ($file) {
     if (!$errorline) {
       //Comprobamos que exista el aula
       $existe_aula = true;
-      
+
+      $query = 'SELECT * FROM my_table';
+      $result = mysql_query($query);
+
       if (!$existe_aula) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula solicitada no existe en el sistema.\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
 
+          $query = 'SELECT * FROM my_table';
+          $result = mysql_query($query);
+
           if(!$libre){
             $warnings .= $actual_line.$prof."\n";
           } else {
             //Hacemos la reserva
-            $done .= $actual_line.$prof."\n";
+            $query = 'SELECT * FROM my_table';
+            $result = mysql_query($query);  
 
+            $done .= $actual_line.$prof."\n";
           }
       }
     }
     $cont++;
   } //foreach
+
+
+  mysql_free_result($result);
+  mysql_close($link);
 
   return array($done, $warnings, $critical);
 }

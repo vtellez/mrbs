@@ -17,4 +17,7 @@
  * @link     https://wiki.jasig.org/display/CASC/phpCAS
  */
 
-$phpcas_psath = './phpCAS/source/';
+$bdhost = 'localhost';
+$bduser = 'localhost';
+$bdpass = 'localhost';
+$bdname = 'mrbs';
