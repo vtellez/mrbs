@@ -55,7 +55,7 @@ if (isset($_REQUEST['logout'])) {
     $error = true;
   }else {
     //Manage CSV upload
-    if(isset($_FILES['file']['tmp_name']) && !empty($_FILES['file']['tmp_name'])) {
+    if(!empty($_FILES['file'])) {
       $name=$_FILES['file']['name'];
       $size=$_FILES['file']['size'];
       $type=$_FILES['file']['type'];
@@ -99,7 +99,7 @@ if (isset($_REQUEST['logout'])) {
 
 
           if(!$errorline) {
-            
+
           }
 
           $cont++;
@@ -159,7 +159,7 @@ if (isset($_REQUEST['logout'])) {
                   "Content-Transfer-Encoding: 8bit";
 
 
-        $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$output;
+        $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$out;
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
               // mail("vtellez-ext@us.es",$title,$output,$headers);
 
