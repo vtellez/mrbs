@@ -88,7 +88,7 @@ if (isset($_REQUEST['logout'])) {
             $warnings .= $actual_line.$line;
             # code...
           } else {
-            $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n";
+            $critical .= $actual_line.$line."MOTIVO: Formato de línea incorrecto.\n\n";
           }
 
           $cont++;
