@@ -44,7 +44,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = 
       array($components[0],$components[1],$components[3]." ".$components[2],$components[4],$components[5],$components[6],$components[7],$components[8],$components[9] );
     } else {
-      $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n\n";
+      $critical .= $actual_line.$line." (MOTIVO: Formato de línea incorrecto.)\n\n";
       $errorline = true;
     }
 
@@ -60,7 +60,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       }
 
       if ($result->num_rows < 1) {
-        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema.\n\n";
+        $critical .= $actual_line.$line." (MOTIVO: El aula '$aula' no existe en el sistema.)\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
