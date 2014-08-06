@@ -150,7 +150,6 @@ if (isset($_REQUEST['logout'])) {
           <label>Descripción del fichero</label>
           <textarea style="width:50%;" rows="6" name="descripcion" placeholder="Añada una descripción del tipo de reservas. Ejemplo: 'Reserva de aulas para el segundo cuatrimestre de la facultad de Biología' "></textarea>
           <br/><br/><br/>
-        </form>
         </td>
     </tr>
   </table>
@@ -164,6 +163,7 @@ if (isset($_REQUEST['logout'])) {
   </center>
   </div>
 
+</form>
 <?php }//else ?>
 
 
