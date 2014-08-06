@@ -1,12 +1,12 @@
 <?php
 
-function parseFile($file) {
+function parseFile ($file) {
 
   $done = "";
   $warnings = "";
   $critical = "";
 
-  $lines = file($location.$final_name);
+  $lines = file($file);
 
   $cont = 1;
   foreach($lines as $line_num => $line)
