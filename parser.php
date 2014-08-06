@@ -51,6 +51,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
       //Comprobamos que exista el aula
       $existe_aula = true;
 
+      $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
       $query = 'SELECT * FROM my_table';
       $result = $mysqli->query($query);
 
@@ -79,6 +80,18 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
     $result->close();
   } //foreach
 
+
+        // $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
+        // $count = $query['count'];
+
+        // if($count eq 0) {
+        //   $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, repeat_id, room_id, timestamp, $POD_USER_ID, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
+        // } else {
+        //   $query = "UDATE mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
+        // }
+
+// #Delete all POD old events
+// $query = "DELETE FROM mrbs_entry WHERE user_id = $POD_USER_ID AND timestamp < $fecha";
 
   $mysqli->close();
 

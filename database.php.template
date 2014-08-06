@@ -16,4 +16,6 @@ $bduser = 'localhost';
 $bdpass = 'localhost';
 $bdname = 'mrbs';
 
+$pod_user_id = 'pod';
+
 ?>
