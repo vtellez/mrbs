@@ -52,7 +52,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
       $existe_aula = true;
 
       $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
-      $result = $mysqli->query($query);
+      // $result = $mysqli->query($query);
 
       if (!$existe_aula) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula solicitada no existe en el sistema.\n\n";
