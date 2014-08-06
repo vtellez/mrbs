@@ -105,7 +105,7 @@ if (isset($_REQUEST['logout'])) {
         ?>
         <fieldset>
           <h2><i class="fa fa-cloud-upload"></i>&nbsp;Fichero recibido y procesado</h2>
-          <p style="font-size: 1.3em;">Las reservas solicitadas se han recibido y procesado con éxito en el sistema mrbs de la Universidad, se le ha enviado un email como acuse de recibo a su cuenta de correo (<?php echo $mail; ?>).</p>
+          <p style="font-size: 1.3em;">Su fichero se ha recibido y procesado con éxito en el sistema de reservas, se le ha enviado un email como acuse de recibo a su cuenta de correo <b><?php echo $mail; ?></b>, incluyendo el siguiente informe:</p>
 
           <br/>
           <h3 style="color: #328113;"><i class="fa fa-check"></i>&nbsp; Reservas confirmadas:</h3>
