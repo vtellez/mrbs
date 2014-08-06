@@ -10,15 +10,17 @@ function parseFile ($file) {
   }
 
   //Abrimos conexión con la base de datos
-  $link = mysqli_connect($bdhost, $bduser, $bdpass);
-  if(!$link) {
+  $mysqli = new mysqli("localhost", "my_user", "my_password", "world");
+ 
+  if($mysqli->connect_errno) {
     return false;
-  } else {
-    $bdselected = mysqli_select_db($bdname, $link);
-    if(!$bdselected) 
-      return false;    
   }
 
+  $connectedbd = $mysqli->select_db($bdname);
+
+  if(!$connectedbd){
+    return false;
+  }
 
   $done = "";
   $warnings = "";
@@ -48,7 +50,7 @@ function parseFile ($file) {
       $existe_aula = true;
 
       $query = 'SELECT * FROM my_table';
-      $result = mysqli_query($query);
+      $result = $mysqli->query($query);
 
       if (!$existe_aula) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula solicitada no existe en el sistema.\n\n";
@@ -57,25 +59,26 @@ function parseFile ($file) {
           $libre = true;
 
           $query = 'SELECT * FROM my_table';
-          $result = mysqli_query($query);
+          $result = $mysqli->query($query);
 
           if(!$libre){
             $warnings .= $actual_line.$prof."\n";
           } else {
             //Hacemos la reserva
             $query = 'SELECT * FROM my_table';
-            $result = mysqli_query($query);  
+            $result = $mysqli->query($query); 
 
             $done .= $actual_line.$prof."\n";
           }
       }
     }
     $cont++;
+
+    $result->close();
   } //foreach
 
 
-  mysqli_free_result($result);
-  mysqli_close($link);
+  $mysqli->close();
 
   return array($done, $warnings, $critical);
 }
