@@ -6,12 +6,9 @@ require_once $phpcas_path . '/CAS.php';
 phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
 
 // For production use set the CA certificate that is the issuer of the cert
-// on the CAS server and uncomment the line below
 // phpCAS::setCasServerCACert($cas_server_ca_cert_path);
 
 // For quick testing you can disable SSL validation of the CAS server.
-// THIS SETTING IS NOT RECOMMENDED FOR PRODUCTION.
-// VALIDATING THE CAS SERVER IS CRUCIAL TO THE SECURITY OF THE CAS PROTOCOL!
 phpCAS::setNoCasServerValidation();
 
 phpCAS::forceAuthentication();
@@ -53,28 +50,32 @@ if (isset($_REQUEST['logout'])) {
 
   $error = false;
 
-  if ($_POST['puesto'] == "" || $_POST['centro'] == "" || $_POST['nombrelista'] == "" ){
+  if ($_POST['puesto'] == "" || $_POST['centro'] == ""){
     $error = true;
   }
-
-  $error = false;
 
   if($error){
   ?>
 
         <fieldset>
-          <legend>Faltan datos en el formulario</legend>
-          <p>Se ha detectado que ciertos campos del formulario no tenían un valor especificado.</p>
-          <p> Por favor rellene todos los datos del formulario para que pueda enviarse la solicitud.</p>
-          <br/>
-          <p><h3><a href="javascript:history.go(-1)"><< Volver a editar los datos del formulario</a></h3></p>
-        </fieldset> 
+          <h2><i class="fa fa-times"></i>&nbsp;Faltan datos en el formulario</h2>
+          <p style="font-size: 1.3em;">Se ha detectado que ciertos campos del formulario no tenían un valor especificado.</p>
+          <p style="font-size: 1.3em;"> Por favor rellene todos los datos del formulario para que pueda enviarse la solicitud.</p>
+        </fieldset>
+
+          <div class="buttons" style="margin: 30px; clear:both;">
+          <center>
+            <button onclick="javascript:history.go(-1);" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+              &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Volver a editar los datos del formulario&nbsp;&nbsp;
+            </a>
+          </button>
+        </div> 
 
   <?php
   } else {
         $out = "";
         $out = $out."SOLICITUD DE NUEVA LISTA DE DISTRIBUCIÓN<br/>";
-        $out = $out."------------------------------------------------------------<br/>";
+        $out = $out."=================================================<br/>";
         $out = $out."DATOS DEL SOLICITANTE<br/>";
         $out = $out."- Uvus: ".$uvus." <br/>";
         $out = $out."- Número de documento: ".$doc." <br/>";
@@ -85,27 +86,35 @@ if (isset($_REQUEST['logout'])) {
         
         $out = $out."<br/>";
 
-        //enviamos por correo la solicitud
-
         $headers =
-                      "From: Reserva de aulas online <pod-salud@us.es>\n".
-                      "Reply-to: reservaulamacarena@listas.us.es\n".
-                      "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
-                      "Content-Transfer-Encoding: 8bit";
+                  "From: Reserva de aulas online <pod-salud@us.es>\n".
+                  "Reply-to: reservaulamacarena@listas.us.es\n".
+                  "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
+                  "Content-Transfer-Encoding: 8bit";
         
         $output = str_replace("<br/>","\n\n",$out);
         $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$output;
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
-              mail("vtellez-ext@us.es",$title,$output,$headers);
+              // mail("vtellez-ext@us.es",$title,$output,$headers);
 
         ?>
         <fieldset>
-          <legend>Solicitud enviada con éxito</legend>
-          <p>Se ha enviado con éxito la siguiente solicitud. Recibirá una notificación en su cuenta de correo (<?php echo $mail; ?>) cuando ésta sea procesada.</p><br/>
+          <h2 style="color: #328113;"><i class="fa fa-check"></i>&nbsp;Reservas realizadas con éxito</h2>
+          <p style="font-size: 1.3em;">Se ha enviado con éxito la siguiente solicitud. Recibirá una notificación en su cuenta de correo (<?php echo $mail; ?>) cuando ésta sea procesada.</p><br/>
           <p><?php echo $out; ?></p>
         </fieldset>
 
+        <div class="buttons" style="margin: 30px; clear:both;">
+          <center>
+            <button style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+              &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Nueva solicitud de reservas&nbsp;&nbsp;
+            </a>
+          </button>
+        </div>
+
     <?php  }//error
+
+    echo "<br/><br/>";
 
   } else {
 ?>
@@ -150,27 +159,29 @@ if (isset($_REQUEST['logout'])) {
           <label>Descripción del fichero</label>
           <textarea style="width:50%;" rows="6" name="descripcion" placeholder="Añada una descripción del tipo de reservas. Ejemplo: 'Reserva de aulas para el segundo cuatrimestre de la facultad de Biología' "></textarea>
           <br/><br/><br/>
-        </form>
         </td>
     </tr>
   </table>
 </fieldset>
 
-  <div class="buttons" style="float: none; margin: 30px; clear:both;">
-  <center>
-    <button type="submit" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;">
-      &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
-    </button>
-  </center>
+  <div class="buttons" style="margin: 30px; clear:both;">
+    <center>
+      <button type="submit" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;">
+        &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
+      </button>
+    </center>
   </div>
 
+</form>
 <?php }//else ?>
 
 
 
 <div style="clear:both; font-size: 1.2em;">
   <center>
-    <a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> <br/> <a href="http://www.us.es/">Universidad de Sevilla</a> 
+    <a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> 
+    <br/> 
+    <a href="http://www.us.es/">Universidad de Sevilla</a> 
   </center> 
 </div>  
         </div>
