@@ -11,7 +11,7 @@
  */
 
 
-function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
+function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
   //Comprobamos que existe el fichero
   if (!file_exists($file)) {
     return false;
@@ -51,7 +51,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
       //Comprobamos que exista el aula
       $existe_aula = true;
 
-      $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
+      $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
       // $result = $mysqli->query($query);
 
       if (!$existe_aula) {
@@ -74,10 +74,10 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
 
             if($count == 0) {
               //Hacemos la reserva
-              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, repeat_id, room_id, timestamp, $POD_USER_ID, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
+              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, timestamp, create_by, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id) VALUES ($finicio, $ffin, entry_type, repeat_id, room_id, timestamp, $pod_user_id, name, profesor, type, description, Observaciones, status, reminded, info_time, info_user, ical_uid, ical_sequence, ical_recur_id)";
             } else {
               //Actualizamos la reserva
-              $query = "UDATE mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
+              $query = "UDATE mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
             }
 
             // $result = $mysqli->query($query); 
@@ -92,7 +92,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
 
 
   // Delete all POD old events
-  $query = "DELETE FROM mrbs_entry WHERE user_id = $POD_USER_ID AND timestamp < $fecha";
+  $query = "DELETE FROM mrbs_entry WHERE user_id = $pod_user_id AND timestamp < $fecha";
   // $result = $mysqli->query($query);
   // $result->close();
 
