@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once 'configUS.php';
 require_once 'parser.php';
 require_once $phpcas_path . '/CAS.php';
 
