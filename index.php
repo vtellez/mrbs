@@ -104,8 +104,6 @@ if (isset($_REQUEST['logout'])) {
         $out = $out."- Número de documento: ".$doc." <br/>";
         $out = $out."- Nombre y apellidos: ".$nombre." <br/>";
         $out = $out."- Dirección de correo: ".$mail." <br/>";
-        $out = $out."- Puesto: ".$_POST['puesto']." <br/>";
-        $out = $out."- Centro: ".$_POST['centro']." <br/>";
         
         $out = $out."<br/>";
 
