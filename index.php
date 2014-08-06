@@ -107,6 +107,8 @@ if (isset($_REQUEST['logout'])) {
 
     <?php  }//error
 
+    echo "<br/><br/>";
+
   } else {
 ?>
 
