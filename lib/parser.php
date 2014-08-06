@@ -51,10 +51,10 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       //Comprobamos que exista el aula
       $existe_aula = true;
 
-      $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
-      // $result = $mysqli->query($query);
+      $query = "SELECT * FROM mrbs_room WHERE room_name = '$aula'";
+      $result = $mysqli->query($query);
 
-      if (!$existe_aula) {
+      if ($result->num_rows != 1) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula solicitada no existe en el sistema.\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
@@ -65,7 +65,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
           if(!$libre){
 
-            $warnings .= $actual_line.$prof."\n";
+            $warnings .= $actual_line.$line."\n";
           
           } else {
             
@@ -83,7 +83,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             }
 
             // $result = $mysqli->query($query); 
-            $done .= $actual_line.$prof."\n";
+            $done .= $actual_line.$line."\n";
           }
       }
     }
