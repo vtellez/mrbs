@@ -75,7 +75,7 @@ if (isset($_REQUEST['logout'])) {
         $lines = file($location.$final_name);
         foreach($lines as $line_num => $line)
         {
-          $done .= $done."\n";
+          $done .= $line."\n";
         }
 
 
