@@ -54,8 +54,8 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $query = "SELECT COUNT(*) as count FROM mrbs_room WHERE room_name = '".$aula."'";
       $result = $mysqli->query($query);
 
-      if ($result->num_rows != 1) {
-        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema. $result->num_rows\n\n";
+      if ($result->num_rows > 0) {
+        $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema.\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
