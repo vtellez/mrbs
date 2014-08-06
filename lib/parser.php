@@ -87,7 +87,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             }
 
             // $result = $mysqli->query($query); 
-            $done .= $actual_line.$line."\n";
+            $done .= $actual_line.$line." ".$result->num_rows."\n";
           }
       }
     }
