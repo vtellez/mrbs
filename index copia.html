@@ -14,6 +14,7 @@ phpCAS::setNoCasServerValidation();
 phpCAS::forceAuthentication();
 $uvus = phpCAS::getAttribute('uid');
 $nombre = phpCAS::getAttribute('cn');
+$nombrepila = phpCAS::getAttribute('givenname');
 $doc = phpCAS::getAttribute('irispersonaluniqueid');
 $mail = phpCAS::getAttribute('mail');
 
