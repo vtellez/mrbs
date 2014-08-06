@@ -62,16 +62,16 @@ if (isset($_REQUEST['logout'])) {
           <ul style="font-size: 1.3em;">
             <li>El campo <b>Puesto</b> debe tener un valor.</li>
             <li>El campo <b>Centro</b> debe tener un valor.</li>
-            <li>El fichero debe tener formato <b>CSV</b> válido (<a href="#">ver documentación</a>).</li>
+            <li>El fichero debe tener formato <b>CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
             <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
           </ul>
-          <p style="font-size: 1.3em;"> Por favor revise que cumple todos estos requisitos para poder realizar las reservas.</p>
+          <p style="font-size: 1.3em;"> Por favor revise que cumple todos estos requisitos para poder continuar.</p>
         </fieldset>
 
           <div class="buttons" style="margin: 30px; clear:both;">
           <center>
             <button onclick="javascript:history.go(-1);" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
-              &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Volver a editar los datos del formulario&nbsp;&nbsp;
+              &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Revisar los datos del formulario&nbsp;&nbsp;
             </a>
           </button>
         </div> 
@@ -104,15 +104,69 @@ if (isset($_REQUEST['logout'])) {
 
         ?>
         <fieldset>
-          <h2 style="color: #328113;"><i class="fa fa-check"></i>&nbsp;Reservas realizadas con éxito</h2>
-          <p style="font-size: 1.3em;">Las reservas solicitadas se han realizado con éxito en el sistema mrbs de la Universidad, se le ha enviado un email como acuse de recibo a su cuenta de correo (<?php echo $mail; ?>).</p><br/>
+          <h2><i class="fa fa-cloud-upload"></i>&nbsp;Fichero recibido y procesado</h2>
+          <p style="font-size: 1.3em;">Las reservas solicitadas se han recibido y procesado con éxito en el sistema mrbs de la Universidad, se le ha enviado un email como acuse de recibo a su cuenta de correo (<?php echo $mail; ?>).</p>
+
+          <br/>
+          <h3 style="color: #328113;"><i class="fa fa-check"></i>&nbsp; Reservas confirmadas:</h3>
+          <textarea rows="10" style="width: 100%;">
+            "; $out = $out."=================================================
+            "; $out = $out."DATOS DEL SOLICITANTE
+            "; $out = $out."- Uvus: ".$uvus." 
+            "; $out = $out."- Número de documento: ".$doc." 
+            "; $out = $out."- Nombre y apellidos: ".$nombre." 
+            "; $out = $out."- Dirección de correo: ".$mail." 
+            "; $out = $out."- Puesto: ".$_POST['puesto']." 
+            "; $out = $out."- Centro: ".$_POST['centro']." 
+            "; $out = $out."
+            "; $headers = "From: Reserva de aulas online \n". "Reply-to: reservaulamacarena@listas.us.es\n". "Content-Type: text/plain; charset=UTF-8; format=flowed\n". "Content-Transfer-Encoding: 8bit"; $output = str_replace("
+            ","\n\n",$out); $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada en https://listas.us.es/solicitud/\n\n\n".$output; $title = "Nueva reserva de aulas online (por ".$uvus.")"; // mail("vtellez-ext@us.es",$title,$output,$headers); ?>
+          </textarea>
+
+          <br/>
+          <br/>
+          <br/>
+          <h3 style="color:#F89200;"><i class="fa fa-warning"></i>&nbsp; Reservas no realizadas por ocupación:</h3>
+          <textarea rows="10" style="width: 100%;">
+            "; $out = $out."=================================================
+            "; $out = $out."DATOS DEL SOLICITANTE
+            "; $out = $out."- Uvus: ".$uvus." 
+            "; $out = $out."- Número de documento: ".$doc." 
+            "; $out = $out."- Nombre y apellidos: ".$nombre." 
+            "; $out = $out."- Dirección de correo: ".$mail." 
+            "; $out = $out."- Puesto: ".$_POST['puesto']." 
+            "; $out = $out."- Centro: ".$_POST['centro']." 
+            "; $out = $out."
+            "; $headers = "From: Reserva de aulas online \n". "Reply-to: reservaulamacarena@listas.us.es\n". "Content-Type: text/plain; charset=UTF-8; format=flowed\n". "Content-Transfer-Encoding: 8bit"; $output = str_replace("
+            ","\n\n",$out); $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada en https://listas.us.es/solicitud/\n\n\n".$output; $title = "Nueva reserva de aulas online (por ".$uvus.")"; // mail("vtellez-ext@us.es",$title,$output,$headers); ?>
+          </textarea>
+
+
+          <br/>
+          <br/>
+          <br/>
+          <h3 style="color:#B24747;"><i class="fa fa-times"></i>&nbsp;Reservas no realizadas por errores fatales:</h3>
+          <textarea rows="10" style="width: 100%;">
+            "; $out = $out."=================================================
+            "; $out = $out."DATOS DEL SOLICITANTE
+            "; $out = $out."- Uvus: ".$uvus." 
+            "; $out = $out."- Número de documento: ".$doc." 
+            "; $out = $out."- Nombre y apellidos: ".$nombre." 
+            "; $out = $out."- Dirección de correo: ".$mail." 
+            "; $out = $out."- Puesto: ".$_POST['puesto']." 
+            "; $out = $out."- Centro: ".$_POST['centro']." 
+            "; $out = $out."
+            "; $headers = "From: Reserva de aulas online \n". "Reply-to: reservaulamacarena@listas.us.es\n". "Content-Type: text/plain; charset=UTF-8; format=flowed\n". "Content-Transfer-Encoding: 8bit"; $output = str_replace("
+            ","\n\n",$out); $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada en https://listas.us.es/solicitud/\n\n\n".$output; $title = "Nueva reserva de aulas online (por ".$uvus.")"; // mail("vtellez-ext@us.es",$title,$output,$headers); ?>
+          </textarea>
+          
           <p><?php echo $out; ?></p>
         </fieldset>
 
         <div class="buttons" style="margin: 30px; clear:both;">
           <center>
             <button onClick="location.href='index.php'" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
-              &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Nueva solicitud de reservas&nbsp;&nbsp;
+              &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Realizar nueva solicitud de reservas&nbsp;&nbsp;
             </a>
           </button>
         </div>
@@ -131,7 +185,7 @@ if (isset($_REQUEST['logout'])) {
       <img src="css/img/logo-us.gif" style="float:left;"/></td>
       <td>
         <br/>
-        <p style="font-size: 1.2em;">Rellene el siguiente formulario y adjunte su fichero csv (<a href="https://apoyotic-pre.us.es/reservas/areasalud/pod/" target="_blank">documentación de ayuda disponible aquí</a>) para realizar la reserva masiva de aulas online.
+        <p style="font-size: 1.2em;">Rellene el siguiente formulario y adjunte su fichero csv (<a href="doc/userdoc.pdf" target="_blank">documentación de ayuda disponible aquí</a>) para realizar la reserva masiva de aulas online.
         </p>
         <p style="font-size: 1.2em;">Para cualquier duda o sugerencia, puede hacerlo a través de <a href="https://webapps.us.es/sos" target="_blank">nuestra plataforma de gestión de incidencias</a>.</p>
         <div class="content-separator"></div>
