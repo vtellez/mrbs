@@ -73,9 +73,10 @@ if (isset($_REQUEST['logout'])) {
         $critical = "";
 
         $lines = file($location.$final_name);
+
         foreach($lines as $line_num => $line)
         {
-          $done .= $line."\n";
+          $done .= "LINEA $line_num =>  ".$line."\n";
         }
 
 
