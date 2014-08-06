@@ -70,7 +70,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           } else {
             
             //Comprobamos si ya existía una reserva
-            $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $POD_USER_ID AND room_name =".$aula;
+            $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
 
             $count = 0;
 
