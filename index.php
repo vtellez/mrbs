@@ -76,7 +76,20 @@ if (isset($_REQUEST['logout'])) {
 
         foreach($lines as $line_num => $line)
         {
-          $done .= "LINEA $line_num =>  ".$line;
+          $actual_line = "LINEA ".$line_num + 1." =>  "
+
+          $components = split(",",$line);
+
+          if(sizeof($components) == 9){
+            $done .= $actual_line.$line;
+          } elseif (sizeof($components) == 10) {
+            $warnings .= $actual_line.$line;
+            # code...
+          } else {
+            $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n";
+          }
+
+
         }
 
 
@@ -131,8 +144,8 @@ if (isset($_REQUEST['logout'])) {
                   "Reply-to: reservaulamacarena@listas.us.es\n".
                   "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
                   "Content-Transfer-Encoding: 8bit";
-        
-        $output = str_replace("<br/>","\n\n",$out);
+
+
         $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$output;
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
               // mail("vtellez-ext@us.es",$title,$output,$headers);
@@ -150,31 +163,14 @@ if (isset($_REQUEST['logout'])) {
           <br/>
           <br/>
           <h3 style="color:#F89200;"><i class="fa fa-warning"></i>&nbsp; Reservas NO realizadas por ocupación:</h3>
-          <textarea rows="10" style="width: 100%;">
-LINEA N =>  ENF;35;350023;Enfermería Médico-Quirúrgica II;S;A1;1;999;;;  ,;;;;SIN;:;:;SIN
-LINEA N =>  ENF;35;350021;Enfermería Pediátrica Social;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-LINEA N =>  ENF;35;350025;Enfermería Psiquiátrica y de Salud Mental;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN
-LINEA N =>  ENF;35;350004;Estructura y Función del Cuerpo Humano. Aspectos Funcionales;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-LINEA N =>  ENF;35;350003;Estructura y Función del Cuerpo Humano. Aspectos Morfológicos;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN
-LINEA N =>  ENF;35;350029;Evaluación de las Intervenciones de Enfermería en la Comunidad y Programas de 
-          </textarea>
+          <textarea rows="10" style="width: 100%;"><?php echo $warnings; ?></textarea>
 
 
           <br/>
           <br/>
           <br/>
           <h3 style="color:#B24747;"><i class="fa fa-times"></i>&nbsp;Reservas NO realizadas por errores fatales:</h3>
-          <textarea rows="10" style="width: 100%;">
-LINEA N =>  ENF;35;350008;Bioquímica;S;Q4;1;;00.00;;  ,;;;;SIN;:;:;SIN 
-(MOTIVO: Formato de línea incorrecto)
-
-LINEA N =>  ENF;35;350001;Ciencias Psicosociales Aplicadas;S;Q4;1;;;;  ,;;;;SIN;:;:;SIN 
-(MOTIVO: Aula solicitada no existe en el sistema)
-
-LINEA N =>  ENF;35;350028;Enfermería Clínica;S;C1;1;999;;;  ,;;;;SIN;:;:;SIN  
-(MOTIVO: Formato de línea incorrecto)
-
-          </textarea>
+          <textarea rows="10" style="width: 100%;"><?php echo $critical; ?></textarea>
           
         </fieldset>
 
