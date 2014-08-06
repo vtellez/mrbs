@@ -53,8 +53,8 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $date = $dia; // ej. 25/05/2010
       $date = str_replace('/', '-', $date);
       $date =  date('Y-m-d', strtotime($date)); // ej. 2010-05-25
-      $tinicio = strtotime('2012-07-25 '.$finicio );
-      $tfin = strtotime('2012-07-25 '.$ffin );
+      $tinicio = strtotime('2012-07-25 '.$hinicio );
+      $tfin = strtotime('2012-07-25 '.$hfin );
 
       if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin)) {
           $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
