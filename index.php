@@ -1,5 +1,6 @@
 <?php
 require_once 'config.php';
+require_once 'database.php';
 require_once 'parser.php';
 require_once $phpcas_path . '/CAS.php';
 
@@ -65,7 +66,7 @@ if (isset($_REQUEST['logout'])) {
             $final_name = time()."_".$uvus.".csv";
 
             if(move_uploaded_file($tmp_name, $location.$final_name)) {
-              $res = parseFile($location.$final_name);
+              $res = parseFile($location.$final_name, $bdhost, $bduser, $bdpass, $bdname);
               if(!$res){
                 $error = true;
               } else {

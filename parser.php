@@ -1,8 +1,7 @@
 <?php
 
-include_once 'database.php';
 
-function parseFile ($file) {
+function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname) {
   //Comprobamos que existe el fichero
   if (!file_exists($file)) {
     return false;
