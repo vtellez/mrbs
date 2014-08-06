@@ -37,7 +37,6 @@ function parseFile ($file) {
       //Comprobamos que exista el aula
       $existe_aula = true;
       
-
       if (!$existe_aula) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula solicitada no existe en el sistema.\n\n";
       }else {
@@ -48,7 +47,7 @@ function parseFile ($file) {
             $warnings .= $actual_line.$prof."\n";
           } else {
             //Hacemos la reserva
-            // $done .= $actual_line.$prof."\n";
+            $done .= $actual_line.$prof."\n";
 
           }
       }
