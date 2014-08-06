@@ -8,7 +8,7 @@
 	<link rel="stylesheet" type="text/css" href="css/estilo.css" media="screen">
 	<link rel="shortcut icon" type="image/x-icon" href="css/img/favicon.ico">
 
-	<title>Reserva de aulas online | Servicio de Correo electrónico</title>
+	<title>Reserva de aulas online | Universidad de Sevilla</title>
 </head>
 
 <body>
@@ -16,10 +16,9 @@
 	<div class="center-wrapper">
 		<div class="content">
 			<div id="main">
-		<img src="css/img/logo.png" style="margin-top: -25px;">
-<br/><br/>
-
-<fieldset>
+		<img src="css/img/logo.png" style="margin-top: -10px;">
+		
+<br/><p><h3 style="clear:both; float: right; padding:20px;"><a href="?logout=1">Cerrar sesión</a></h3></p>
 
 <?php
 
@@ -40,7 +39,7 @@
 	if($error){
 	?>
 
-
+<fieldset>
 	<legend>Faltan datos en el formulario</legend>
 	<p>Se ha detectado que ciertos campos del formulario no tenían un valor especificado.</p>
 	<p> Por favor rellene todos los datos del formulario para que pueda enviarse la solicitud.</p>
@@ -94,37 +93,41 @@
 	$output = str_replace("<br/>","\n\n",$out);
 	$output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$output;
 	$title = "Solicitud de nueva lista de correo (".$_POST['nombrelista']."@listas.us.es)";
-        mail("jenrique@us.es",$title,$output,$headers);
-        mail("correo@us.es",$title,$output,$headers);
+        // mail("jenrique@us.es",$title,$output,$headers);
+        mail("vtellez-ext@us.es",$title,$output,$headers);
 
 	?>
 
         <legend>Solicitud enviada con éxito</legend>
         <p>Se ha enviado con éxito la siguiente solicitud. Recibirá una notificación en su cuenta de correo (<?php echo $_POST['correo']; ?>) cuando ésta sea procesada.</p><br/>
         <p><?php echo $out; ?></p>
-        <br/><p><h3><a href="?logout=1">Cerrar sesión de usuario</a></h3></p>
+        
+
         </fieldset>
 
 		<?php 	}//error
 
 	}else{
 ?>
-<legend>Formulario de solicitud de nueva lista</legend>
+
+<fieldset>
+
+
 
 	<table border="0">
 		<tr>
 			<td style="width: 180px; vertical-align:text-top;">
 			<img src="css/img/logo-us.gif" style="float:left;"/></td>
 			<td>
-
-<p>Rellene el siguiente formulario con la información de su solicitud y recibirá una notificación en su correo corporativo relativa a la creación de dicha lista. TODOS los campos son obligatorios.
+<br/>
+<p style="font-size: 1.2em;">Rellene el siguiente formulario y adjunte su fichero csv (<a href="https://apoyotic-pre.us.es/reservas/areasalud/pod/" target="_blank">documentación de ayuda disponible aquí</a>) para realizar la reserva masiva de aulas online.
 </p>
 
-<p>Para cualquier duda o sugerencia, puede hacerlo a través de <a href="https://webapps.us.es/sos" target="_blank">nuestra plataforma de gestión de incidencias</a>.</p>
+<p style="font-size: 1.2em;">Para cualquier duda o sugerencia, puede hacerlo a través de <a href="https://webapps.us.es/sos" target="_blank">nuestra plataforma de gestión de incidencias</a>.</p>
 
 <div class="content-separator"></div>
 
-<form method="POST" action="index.php">
+<form method="POST" enctype="multipart/form-data" action="index.php" >
 <input type="hidden" name="oculto" value="1" />
 
         <h2>Datos del solicitante</h2><br/>
@@ -158,82 +161,31 @@
         <br/><br/>
 
 	<div class="content-separator"></div>
-	<h2>Datos del administrador</h2>
-	<br/>
-	<input type="checkbox" name="igual" checked="checked" value="1" onclick="javascript:cambio('oculto');" /> Solicitante y administrador de la lista son la misma persona.
-	<br/><br/>
-	<div id="oculto">
- 	<label>Apellidos</label>
-        <input type="text" name="aapellidos" maxlength="150" size="50" style="width:50%"  value=""/>
+	<h2>Fichero de reservas</h2><br/>
+        <label>Fichero CSV</label>
+        <input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
         <br/><br/>
 
-        <label>Nombre</label>
-        <input type="text" name="anombre" maxlength="150" size="50" style="width:50%"  value=""/>
-        <br/><br/>
+        <label>Descripción del fichero</label>
+		<textarea style="width:50%;" rows="6" name="descripcion" placeholder="Añada una descripción del tipo de reservas. Ejemplo: 'Reserva de aulas para el segundo cuatrimestre de la facultad de Biología' "></textarea>
 
-        <label>DNI/PASAPORTE</label>
-        <input type="text" name="adni" maxlength="150" size="50" style="width:50%"  value=""/>
-        <br/><br/>
-
-        <label>Dirección de correo</label>
-        <input type="text" name="acorreo" id="" maxlength="150" size="50" style="width:50%"  value=""/>
-        <br/><br/>
-
-        <label>Puesto que ocupa</label>
-        <input type="text" name="apuesto" maxlength="150" size="50" style="width:50%"  value=""/>
-        <br/><br/>
-
-        <label>Servicio/Centro/Depto./Grupo</label>
-        <input type="text" name="acentro" id="" maxlength="150" size="50" style="width:50%"  value=""/>
-        <br/><br/>
-	</div>
-	<div class="content-separator"></div>
-	<h2>Datos de la lista</h2><br/>
-        <label>Nombre de la lista</label>
-        <input type="text" name="nombrelista" value="" id="mfrom" maxlength="20" size="50" style="width:38%"  value="vtellez@us.es" />@listas.us.es
-        <br/><br/>
-
-        <label>Descripción de la lista</label>
-		<textarea style="width:50%;" rows="4" name="descripcion"></textarea>
-	<br/><br/>
-
-	<label>Características de la lista</label>
-        <a href="http://www.us.es/campus/servicios/sic/correo/listasdis/intrlistas" target="_blank">(Ver información sobre características de listas)</a>
-	<br/><br/>
-        
-	<label>Privacidad</label>
-	<input name="privi" type="radio" value="Pública"/>Pública&nbsp;&nbsp;&nbsp;
-	<input name="privi" type="radio" checked="checked" value="Privada"/>Privada
-	<br/><br/>
-
-
-        <label>Control de subscripción</label>
-        <input name="visi" type="radio" value="Abierta"/>Abierta&nbsp;&nbsp;&nbsp;&nbsp;
-        <input name="visi" type="radio" checked="checked" value="Cerrada"/>Cerrada
-        <br/><br/>
-
-
-        <label>Moderación</label>
-        <input name="mod" type="radio" value="Moderada"/>Moderada
-        <input name="mod" type="radio" checked="checked" value="No moderada"/>No moderada
         <br/><br/><br/>
    			</td>
 		</tr>
 	</table>
 </fieldset>
 <br/>
-  <div class="buttons" style="float: right; ">
-	<input type="submit" value="Enviar solicitud de nueva lista" />
+  <div class="buttons" style="float: right; margin: 20px; clear:both;">
+	<input type="submit" value="Realizar solicitud de reservas" style=" font-size: 1.4em; padding: 25px; background-color: #5BAF4B; color: #fff;" />
   </div>
 
 <?php }//else ?>
 
-<br/>
-<br/>
-<br/>
-		<center>
-			<a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> <br/> <a href="http://www.us.es/">Universidad de Sevilla</a> 
-		</center>		
+<div style="clear:both;">
+	<center>
+		<a href="http://www.us.es/servicios/sic">Servicio de Informática y Comunicaciones</a> - <a href="http://www.us.es/">Universidad de Sevilla</a> 
+	</center>	
+</div>	
 				</div>
 			</div>
 		</div>
