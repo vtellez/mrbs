@@ -1,7 +1,7 @@
 <?php
-require_once 'config.php';
-require_once 'database.php';
-require_once 'parser.php';
+require_once 'config/config.php';
+require_once 'config/database.php';
+require_once 'lib/parser.php';
 require_once $phpcas_path . '/CAS.php';
 
 // Initialize phpCAS
