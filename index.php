@@ -66,14 +66,10 @@ if (isset($_REQUEST['logout'])) {
 
       $final_name = time()."_".$uvus.".csv";
 
-     if($size <= maxsize) {
-        if(move_uploaded_file($tmp_name, $location.$final_name)) {
-            echo "SUBIDO!";
-        } else {
-          $error = true;
-        }
+      if(move_uploaded_file($tmp_name, $location.$final_name)) {
+        echo "SUBIDO!";
       } else {
-        // $error = true;
+        $error = true;
       }
 
     }  
