@@ -51,10 +51,10 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       //Comprobamos que exista el aula
       $existe_aula = true;
 
-      $query = "SELECT * FROM mrbs_room WHERE room_name = '$aula'";
+      $query = "SELECT * FROM mrbs_room WHERE room_name = '".$aula."'";
       $result = $mysqli->query($query);
 
-      if ($result->num_rows != 1) {
+      if ($result->num_rows < 1) {
         $critical .= $actual_line.$line."\nMOTIVO: El aula '$aula' no existe en el sistema.\n\n";
       }else {
           //Comprobamos que esté disponible el aula para esa fecha y horas
