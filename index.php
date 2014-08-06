@@ -184,7 +184,7 @@ if (isset($_REQUEST['logout'])) {
       <img src="css/img/logo-us.gif" style="float:left;"/></td>
       <td>
         <br/>
-        <p style="font-size: 1.2em;">Rellene el siguiente formulario y adjunte su fichero csv (<a href="doc/userdoc.pdf" target="_blank">documentación de ayuda disponible aquí</a>) para realizar la reserva masiva de aulas online.
+        <p style="font-size: 1.2em;">Rellene el siguiente formulario para realizar la reserva masiva de aulas online.
         </p>
         <p style="font-size: 1.2em;">Para cualquier duda o sugerencia, puede hacerlo a través de <a href="https://webapps.us.es/sos" target="_blank">nuestra plataforma de gestión de incidencias</a>.</p>
         <div class="content-separator"></div>
@@ -211,11 +211,12 @@ if (isset($_REQUEST['logout'])) {
           <br/><br/>
           <div class="content-separator"></div>
           <h2><i class="fa fa-file"></i>&nbsp; Fichero de reservas</h2><br/>
-          <label>Fichero CSV</label>
+
+          <p style="clear:both; font-size: 1.2em;">Consulte si lo necesita la <a href="doc/userdoc.pdf" target="_blank">documentación del formato del fichero CSV</a> </p>
+          
+           <label>Fichero CSV</label>
           <input type="file" name="image_file" id="image_file" onchange="fileSelected();" />
-          <br/><br/>
-          <label>Descripción del fichero</label>
-          <textarea style="width:50%;" rows="6" name="descripcion" placeholder="Añada una descripción del tipo de reservas. Ejemplo: 'Reserva de aulas para el segundo cuatrimestre de la facultad de Biología' "></textarea>
+
           <br/><br/><br/>
         </td>
     </tr>
