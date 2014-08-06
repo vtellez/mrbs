@@ -74,10 +74,11 @@ if (isset($_REQUEST['logout'])) {
 
         $lines = file($location.$final_name);
 
+        $cont = 1;
         foreach($lines as $line_num => $line)
         {
 
-          $actual_line = "LINEA ".$line_num + 1." =>  ";
+          $actual_line = "LINEA ".$cont." =>  ";
 
           $components = split(",",$line);
 
@@ -90,6 +91,7 @@ if (isset($_REQUEST['logout'])) {
             $critical .= $actual_line.$line."\nMOTIVO: Formato de línea incorrecto.\n";
           }
 
+          $cont++;
         } //foreach
 
 
