@@ -56,13 +56,16 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $tinicio = strtotime('2012-07-25 '.$hinicio );
       $tfin = strtotime('2012-07-25 '.$hfin );
 
-      $tinicio = 1382694300;
-      $tfin = 1382697000;
 
       if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin)) {
           $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
           $errorline = true;
       }
+
+
+      $tinicio = 1382694300;
+      $tfin = 1382697000;
+      
     }
 
     if (!$errorline) {
@@ -103,7 +106,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
           $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
           $result = $mysqli->query($query);
-          echo "<p>$query</p>";
+          // echo "<p>$query</p>";
 
           if($result->num_rows > 0){
 
@@ -157,8 +160,6 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
                                              end_time = $tfin
                                          WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
             }
-          echo "<p>$query</p>";
-
             // $result = $mysqli->query($query); 
             $done .= $actual_line.$line."     Produce: $query\n";
           }
