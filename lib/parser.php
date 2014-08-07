@@ -63,7 +63,6 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
     }
 
     if (!$errorline) {
-      //Comprobamos que exista el aula
 
       //MRBS ROOM
       // +------------------+-------------+------+-----+---------+----------------+
@@ -87,6 +86,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       // +-----+----------+---------+---------------------------+---------------------------+-------------+----------+---------------------------------+-------------+
 
 
+      //Comprobamos que exista el aula
       $query = "SELECT * FROM mrbs_room WHERE room_name = '".$aula."'";
       $result = $mysqli->query($query);
 
@@ -98,24 +98,19 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
 
-          $query = 'SELECT * FROM my_table';
-          // $result = $mysqli->query($query);
+          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND created_by <> '$pod_user_id'";
+          $result = $mysqli->query($query);
+          echo "<p>$query</p>";
 
-          if(!$libre){
+          if($result->num_rows > 0){
 
             $warnings .= $actual_line.$line."\n";
           
           } else {
             
             //Comprobamos si ya existía una reserva
-            $query = "SELECT COUNT(*) as count FROM mrbs_entry WHERE create_by = $pod_user_id AND room_name =".$aula;
-
-            $count = 0;
-
-
-            // while($row = $result->fetch_assoc()){
-            //     echo $row['count'] . '<br />';
-            // }
+            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND created_by = '$pod_user_id'";
+            $result = $mysqli->query($query);
 
             // MRBS ENTRY
             // +---------------+---------------------+------+-----+-------------------+-----------------------------+
@@ -150,7 +145,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             // | 41 | 1382434200 | 1382437800 |          1 |         1 |     123 | 2013-10-16 18:57:13 | rsierra   | test-borrar      | borrar      | B    | test-borrar             |                 |      0 |     NULL |      NULL | NULL      | NULL      | MRBS-525ec55fc1a72-69227c49@apoyotic.us.es |             0 | 20131022T093000Z |
             // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
 
-            if($count == 0) {
+            if($mysqli->query($query) == 0) {
               //Hacemos la reserva
               $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 1, 1, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
             } else {
