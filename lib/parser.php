@@ -154,6 +154,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
                                              end_time = $tfin
                                          WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
             }
+          echo "<p>$query</p>";
 
             // $result = $mysqli->query($query); 
             $done .= $actual_line.$line."     Produce: $query\n";
