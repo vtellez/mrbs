@@ -98,7 +98,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
 
-          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND created_by <> '$pod_user_id'";
+          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
           $result = $mysqli->query($query);
           echo "<p>$query</p>";
 
@@ -109,7 +109,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           } else {
             
             //Comprobamos si ya existía una reserva
-            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND created_by = '$pod_user_id'";
+            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
             $result = $mysqli->query($query);
 
             // MRBS ENTRY
