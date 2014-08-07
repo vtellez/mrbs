@@ -47,7 +47,7 @@ if (isset($_REQUEST['logout'])) {
           <a href="?logout=1" style="font-size: 1.1em; padding: 8px; background-color: #CA4C52; color: #fff;">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>&nbsp;Cerrar sesión&nbsp;&nbsp;</a>
         </div> 
 <?php
-  if($_POST['oculto'] == "1"){
+  if(isset($_POST['oculto']) && $_POST['oculto'] == "1"){
 
       $error = false;
       //Manage CSV upload
