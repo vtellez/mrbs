@@ -151,7 +151,6 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             // | 41 | 1382434200 | 1382437800 |          1 |         1 |     123 | 2013-10-16 18:57:13 | rsierra   | test-borrar      | borrar      | B    | test-borrar             |                 |      0 |     NULL |      NULL | NULL      | NULL      | MRBS-525ec55fc1a72-69227c49@apoyotic.us.es |             0 | 20131022T093000Z |
             // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
 
-
             if($result->num_rows == 0) {
               //Hacemos la reserva
               $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
