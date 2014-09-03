@@ -66,7 +66,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       $tfin = strtotime($ffin);
 
 
-      if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin) || $finicio > $ffin) {
+      if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin) || $tinicio > $tfin) {
 
           $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
           $errorline = true;
