@@ -73,7 +73,13 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
       
       } else {
 
-        $lunes, $martes, $miercoles, $jueves, $viernes, $sabado, $domingo = array();
+        $lunes = array();
+        $martes = array();
+        $miercoles = array();
+        $jueves = array();
+        $viernes = array();
+        $sabado = array();
+        $domingo = array();
 
         for ( $date = $tinicio; $date <= $tfin; $date += 60 * 60 * 24) {
             if ( strftime('%w', $date) == 1 )  {
