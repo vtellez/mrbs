@@ -97,11 +97,10 @@ if (isset($_REQUEST['logout'])) {
   <?php
   } else {
         $out = "";
-        $out = $out."SOLICITUD DE NUEVA LISTA DE DISTRIBUCIÓN<br/>";
+        $out = $out."RESERVA DE AULAS ONLINE<br/>";
         $out = $out."=================================================<br/>";
         $out = $out."DATOS DEL SOLICITANTE<br/>";
         $out = $out."- Uvus: ".$uvus." <br/>";
-        $out = $out."- Número de documento: ".$doc." <br/>";
         $out = $out."- Nombre y apellidos: ".$nombre." <br/>";
         $out = $out."- Dirección de correo: ".$mail." <br/>";
         
@@ -114,9 +113,10 @@ if (isset($_REQUEST['logout'])) {
                   "Content-Transfer-Encoding: 8bit";
 
 
-        $output = "NOTA: Este es un mensaje automático enviado desde la aplicación web alojada  en https://listas.us.es/solicitud/\n\n\n".$out;
+        $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n".$out;
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
               mail("vtellez-ext@us.es",$title,$output,$headers);
+              // mail("vtellez-ext@us.es",$title,$output,$headers);
 
         ?>
         <fieldset>
