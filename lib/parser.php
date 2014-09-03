@@ -26,7 +26,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
   //Borramos todas las reservas previas del usuario pod
   $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id'";
-  // $result = $mysqli->query($query);
+  $result = $mysqli->query($query);
 
 
   $done = "";
@@ -166,13 +166,8 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
                 //Hacemos la reserva
                 $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
               }
-              //  else {
-              //   //Actualizamos la reserva
-              //   $query = "UDATE mrbs_entry SET start_time = $tinicio,
-              //                                  end_time = $tfin
-              //                              WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
-              // }
-              // $result = $mysqli->query($query); 
+             
+              $result = $mysqli->query($query); 
               $done .= "\n".$actual_line.$line."  Produce: $query\n";
             }
         }
