@@ -114,6 +114,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
             $reps = $domingo;
             break;
           default:
+            $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
             $errorline = true;
             break;
         }
