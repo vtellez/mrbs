@@ -24,6 +24,11 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
     return false;
   }
 
+  //Borramos todas las reservas previas del usuario pod
+  $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id'";
+  // $result = $mysqli->query($query);
+
+
   $done = "";
   $warnings = "";
   $critical = "";
@@ -38,7 +43,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
     $components = split(",",$line);
     $components= array_map('trim', $components);
 
-    if (count($components) == 9){
+    if (count($components) == 9) {
       list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = $components;
     } elseif (count($components) == 10) {
       list($code, $asig, $prof, $finicio, $ffin, $dia, $hinicio, $hfin, $aula) = 
@@ -50,135 +55,139 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
     if(!$errorline){
       //calculate timestamps
-      $date = $dia; // ej. 25/05/2010
-      $date = str_replace('/', '-', $date);
-      $date =  date('Y-m-d', strtotime($date)); // ej. 2010-05-25
-      $tinicio = strtotime('2012-07-25 '.$hinicio );
-      $tfin = strtotime('2012-07-25 '.$hfin );
+
+      $finicio = str_replace('/', '-', $finicio);
+      $finicio =  date('Y-m-d', strtotime($finicio)); // ej. 2010-05-25
+      
+      $ffin = str_replace('/', '-', $ffin);
+      $ffin =  date('Y-m-d', strtotime($ffin)); // ej. 2010-05-25
+
+      $tinicio = strtotime($finicio);
+      $tfin = strtotime($ffin);
 
 
-      if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin)) {
+      if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin) || $finicio > $ffin) {
+
           $critical .= $actual_line.$line." (MOTIVO: Formato de fechas incorrecto.)\n\n";
           $errorline = true;
-      }
-
-
-      $tinicio = 1382694300;
-      $tfin = 1382697000;
       
+      } else {
+
+        foreach ( $date = $tinicio; $date <= $tfin; $date += 60 * 60 * 24) {
+            if ( strftime('%w', $date) == 1 )  {
+                $lunes[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 2 ) {
+                $martes[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 3 ) {
+                $miercoles[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 4 ) {
+                $jueves[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 5 ) {
+                $viernes[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 6 ) {
+                $sabado[] = strftime('%A %Y-%m-%d', $date);
+            } if ( strftime('%w', $date) == 0 ) {
+                $domingo[] = strftime('%A %Y-%m-%d', $date);
+            }
+        }
+
+        $reps = array();
+        switch ($dia) {
+          case 'LUN':
+            $reps = $lunes;
+            break;
+          case 'MAR':
+            $reps = $martes;
+            break;
+          case 'MIE':
+            $reps = $miercoles;
+            break;
+          case 'JUE':
+            $reps = $jueves;
+            break;
+          case 'VIE':
+            $reps = $viernes;
+            break;
+          case 'SAB':
+            $reps = $sabado;
+            break;
+          case 'DOM':
+            $reps = $domingo;
+            break;
+          default:
+            $errorline = true;
+            break;
+        }
+
+
+
+
+      }
+    
     }
 
     if (!$errorline) {
 
-      //MRBS ROOM
-      // +------------------+-------------+------+-----+---------+----------------+
-      // | Field            | Type        | Null | Key | Default | Extra          |
-      // +------------------+-------------+------+-----+---------+----------------+
-      // | id               | int(11)     | NO   | PRI | NULL    | auto_increment |
-      // | disabled         | tinyint(1)  | NO   |     | 0       |                |
-      // | area_id          | int(11)     | NO   |     | 0       |                |
-      // | room_name        | varchar(25) | NO   |     |         |                |
-      // | sort_key         | varchar(25) | NO   | MUL |         |                |
-      // | description      | varchar(60) | YES  |     | NULL    |                |
-      // | capacity         | int(11)     | NO   |     | 0       |                |
-      // | room_admin_email | text        | YES  |     | NULL    |                |
-      // | custom_html      | text        | YES  |     | NULL    |                |
-      // +------------------+-------------+------+-----+---------+----------------+
 
-      // +-----+----------+---------+---------------------------+---------------------------+-------------+----------+---------------------------------+-------------+
-      // | id  | disabled | area_id | room_name                 | sort_key                  | description | capacity | room_admin_email                | custom_html |
-      // +-----+----------+---------+---------------------------+---------------------------+-------------+----------+---------------------------------+-------------+
-      // |  27 |        0 |       8 | Sala Juntas M             | Sala Juntas M             |             |        0 | resaumed@listas.us.es           |             |
-      // +-----+----------+---------+---------------------------+---------------------------+-------------+----------+---------------------------------+-------------+
+      foreach ($reps as $repdate) {
+        //calculate timestamps
+        $date = str_replace('/', '-', $repdate);
+        $date =  date('Y-m-d', strtotime($date)); // ej. 2010-05-25
 
+        $tinicio = strtotime($date." ".$hinicio);
+        $tfin = strtotime($date." ".$hfin);
 
-      //Comprobamos que exista el aula
-      $query = "SELECT * FROM mrbs_room WHERE room_name = '".$aula."'";
-      $result = $mysqli->query($query);
+        //Comprobamos que exista el aula
+        $query = "SELECT * FROM mrbs_room WHERE room_name = '".$aula."'";
+        $result = $mysqli->query($query);
 
-      if ($result->num_rows < 1) {
-        $critical .= $actual_line.$line." (MOTIVO: El aula '$aula' no existe en el sistema.)\n\n";
-      }else {
-          $room = $result->fetch_assoc();
+        if ($result->num_rows < 1) {
+          $critical .= $actual_line.$line." (MOTIVO: El aula '$aula' no existe en el sistema.)\n\n";
+        }else {
+            $room = $result->fetch_assoc();
 
-          //Comprobamos que esté disponible el aula para esa fecha y horas
-          $libre = true;
+            //Comprobamos que esté disponible el aula para esa fecha y horas
+            $libre = true;
 
-          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
-          $result = $mysqli->query($query);
-          // echo "<p>$query</p>";
-
-          if($result->num_rows > 0){
-
-            $warnings .= $actual_line.$line."\n";
-          
-          } else {
-            
-            //Comprobamos si ya existía una reserva
-            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
+            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
             $result = $mysqli->query($query);
+            // echo "<p>$query</p>";
 
-            // MRBS ENTRY
-            // +---------------+---------------------+------+-----+-------------------+-----------------------------+
-            // | Field         | Type                | Null | Key | Default           | Extra                       |
-            // +---------------+---------------------+------+-----+-------------------+-----------------------------+
-            // | id            | int(11)             | NO   | PRI | NULL              | auto_increment              |
-            // | start_time    | int(11)             | NO   | MUL | 0                 |                             |
-            // | end_time      | int(11)             | NO   | MUL | 0                 |                             |
-            // | entry_type    | int(11)             | NO   |     | 0                 |                             |
-            // | repeat_id     | int(11)             | NO   |     | 0                 |                             |
-            // | room_id       | int(11)             | NO   |     | 1                 |                             |
-            // | timestamp     | timestamp           | NO   |     | CURRENT_TIMESTAMP | on update CURRENT_TIMESTAMP |
-            // | create_by     | varchar(80)         | NO   |     |                   |                             |
-            // | name          | varchar(90)         | NO   |     |                   |                             |
-            // | profesor      | varchar(70)         | NO   |     |                   |                             |
-            // | type          | char(1)             | NO   |     | E                 |                             |
-            // | description   | text                | YES  |     | NULL              |                             |
-            // | Observaciones | text                | YES  |     | NULL              |                             |
-            // | status        | tinyint(3) unsigned | NO   |     | 0                 |                             |
-            // | reminded      | int(11)             | YES  |     | NULL              |                             |
-            // | info_time     | int(11)             | YES  |     | NULL              |                             |
-            // | info_user     | varchar(80)         | YES  |     | NULL              |                             |
-            // | info_text     | text                | YES  |     | NULL              |                             |
-            // | ical_uid      | varchar(255)        | NO   |     |                   |                             |
-            // | ical_sequence | smallint(6)         | NO   |     | 0                 |                             |
-            // | ical_recur_id | varchar(16)         | NO   |     |                   |                             |
-            // +---------------+---------------------+------+-----+-------------------+-----------------------------+
+            if($result->num_rows > 0){
 
-            // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
-            // | id | start_time | end_time   | entry_type | repeat_id | room_id | timestamp           | create_by | name             | profesor    | type | description             | Observaciones   | status | reminded | info_time | info_user | info_text | ical_uid                                   | ical_sequence | ical_recur_id    |
-            // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
-            // | 41 | 1382434200 | 1382437800 |          1 |         1 |     123 | 2013-10-16 18:57:13 | rsierra   | test-borrar      | borrar      | B    | test-borrar             |                 |      0 |     NULL |      NULL | NULL      | NULL      | MRBS-525ec55fc1a72-69227c49@apoyotic.us.es |             0 | 20131022T093000Z |
-            // +----+------------+------------+------------+-----------+---------+---------------------+-----------+------------------+-------------+------+-------------------------+-----------------+--------+----------+-----------+-----------+-----------+--------------------------------------------+---------------+------------------+
+              $warnings .= $actual_line.$line."\n";
+            
+            } else {
+              
+              //Comprobamos si ya existía una reserva
+              $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
+              $result = $mysqli->query($query);
 
-            if($result->num_rows == 0) {
-              //Hacemos la reserva
-              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
+              if($result->num_rows == 0) {
+                //Hacemos la reserva
+                $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
+              }
+              //  else {
+              //   //Actualizamos la reserva
+              //   $query = "UDATE mrbs_entry SET start_time = $tinicio,
+              //                                  end_time = $tfin
+              //                              WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
+              // }
+              // $result = $mysqli->query($query); 
+              $done .= $actual_line.$line."     Produce: $query\n";
             }
-            //  else {
-            //   //Actualizamos la reserva
-            //   $query = "UDATE mrbs_entry SET start_time = $tinicio,
-            //                                  end_time = $tfin
-            //                              WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
-            // }
-            // $result = $mysqli->query($query); 
-            $done .= $actual_line.$line."     Produce: $query\n";
-          }
-      }
+        }
+
+      }//foreach reps
     }
+
     $cont++;
 
     // $result->close();
   } //foreach
 
 
-  // Delete all POD old events
-  //$query = "DELETE FROM mrbs_entry WHERE user_id = $pod_user_id AND timestamp < $fecha";
-  // $result = $mysqli->query($query);
-  // $result->close();
-
   $mysqli->close();
-
   return array($done, $warnings, $critical);
 }
 
