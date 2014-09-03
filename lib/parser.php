@@ -72,8 +72,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           $errorline = true;
       
       } else {
-
-        foreach ( $date = $tinicio; $date <= $tfin; $date += 60 * 60 * 24) {
+        for ( $date = $tinicio; $date <= $tfin; $date += 60 * 60 * 24) {
             if ( strftime('%w', $date) == 1 )  {
                 $lunes[] = strftime('%A %Y-%m-%d', $date);
             } if ( strftime('%w', $date) == 2 ) {
