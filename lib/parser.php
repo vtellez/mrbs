@@ -72,6 +72,9 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
           $errorline = true;
       
       } else {
+
+        $lunes, $martes, $miercoles, $jueves, $viernes, $sabado, $domingo = array();
+
         for ( $date = $tinicio; $date <= $tfin; $date += 60 * 60 * 24) {
             if ( strftime('%w', $date) == 1 )  {
                 $lunes[] = strftime('%A %Y-%m-%d', $date);
