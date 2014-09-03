@@ -128,7 +128,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
 
     if (!$errorline) {
 
-      $done .= $actual_line.$line;
+      $done .= $actual_line.$line."\n";
       foreach ($reps as $repdate) {
         //calculate timestamps
         $date = str_replace('/', '-', $repdate);
