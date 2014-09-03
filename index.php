@@ -96,16 +96,6 @@ if (isset($_REQUEST['logout'])) {
 
   <?php
   } else {
-        $out = "";
-        $out = $out."RESERVA DE AULAS ONLINE<br/>";
-        $out = $out."=================================================<br/>";
-        $out = $out."DATOS DEL SOLICITANTE<br/>";
-        $out = $out."- Uvus: ".$uvus." <br/>";
-        $out = $out."- Nombre y apellidos: ".$nombre." <br/>";
-        $out = $out."- Dirección de correo: ".$mail." <br/>";
-        
-        $out = $out."<br/>";
-
         $headers =
                   "From: Reserva de aulas online <pod-salud@us.es>\n".
                   "Reply-to: reservaulamacarena@listas.us.es\n".
@@ -113,7 +103,7 @@ if (isset($_REQUEST['logout'])) {
                   "Content-Transfer-Encoding: 8bit";
 
 
-        $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n".$out;
+        $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n";
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
               mail("vtellez-ext@us.es",$title,$output,$headers);
               mail("rsierra@us.es",$title,$output,$headers);
