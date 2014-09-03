@@ -116,7 +116,8 @@ if (isset($_REQUEST['logout'])) {
         $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n".$out;
         $title = "Nueva reserva de aulas online (por ".$uvus.")";
               mail("vtellez-ext@us.es",$title,$output,$headers);
-              // mail("vtellez-ext@us.es",$title,$output,$headers);
+              mail("rsierra@us.es",$title,$output,$headers);
+              mail($mail,$title,$output,$headers);
 
         ?>
         <fieldset>
