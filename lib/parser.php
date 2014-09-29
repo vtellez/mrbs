@@ -2,8 +2,6 @@
 
 /**
  * Main parser
- *
- *
  * @file     config.php
  * @category Configuration
  * @author   Víctor Téllez <tellez.victor@gmail.com>
@@ -40,7 +38,7 @@ function parseFile ($file, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id) {
     $line = rtrim($line);
     $errorline = false;
     $actual_line = "LINEA ".$cont." =>  ";
-    $components = split(",",$line);
+    $components = split(";",$line);
     $components= array_map('trim', $components);
 
     if (count($components) == 9) {
