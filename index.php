@@ -54,103 +54,117 @@ if (in_array($uvus, $uvus_perm)) {
           </div> 
 
           <?php if(!$perm) ?>
+          <fieldset>
+            <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
+            <ul style="font-size: 1.3em;">
+              <li>El usuario con uvus <?php echo $uvus ?> no tiene permisos para administrar esta aplicación web. Por favor, contacte con nosotros en <a href=""></a> si tiene cualquier duda.</li>
+            </ul>
+            <p style="font-size: 1.3em;"> Por favor revise que cumple estos requisitos para poder continuar.</p>
+          </fieldset>
 
-          <?php } else { ?>
+          <div class="buttons" style="margin: 30px; clear:both;">
+            <center>
+              <button onclick="javascript:history.go(-1);" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+                &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Revisar los datos del formulario&nbsp;&nbsp;
+              </a>
+            </button>
+          </div> 
 
-          <?php
-          if(isset($_POST['oculto']) && $_POST['oculto'] == "1"){
+          <?php } else {
 
-            $error = false;
-      //Manage CSV upload
-            if(!empty($_FILES['file'])) {
-              $name=$_FILES['file']['name'];
-              $size=$_FILES['file']['size'];
-              $type=$_FILES['file']['type'];
-              $tmp_name=$_FILES['file']['tmp_name'];
-              $error=$_FILES['file']['error'];
-              $maxsize ="51200";
-              $location='/var/www/html/reservas/areasalud/pod/temp/';
-              $final_name = time()."_".$uvus.".csv";
+            if(isset($_POST['oculto']) && $_POST['oculto'] == "1"){
 
-              if(move_uploaded_file($tmp_name, $location.$final_name)) {
-                $res = parseFile($location.$final_name, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id);
-                if(!$res){
-                  $error = true;
+              $error = false;
+              //Manage CSV upload
+              if(!empty($_FILES['file'])) {
+                $name=$_FILES['file']['name'];
+                $size=$_FILES['file']['size'];
+                $type=$_FILES['file']['type'];
+                $tmp_name=$_FILES['file']['tmp_name'];
+                $error=$_FILES['file']['error'];
+                $maxsize ="51200";
+                $location='/var/www/html/reservas/areasalud/pod/temp/';
+                $final_name = time()."_".$uvus.".csv";
+
+                if(move_uploaded_file($tmp_name, $location.$final_name)) {
+                  $res = parseFile($location.$final_name, $bdhost, $bduser, $bdpass, $bdname, $pod_user_id);
+                  if(!$res){
+                    $error = true;
+                  } else {
+                    list($done, $warnings, $critical) = $res;
+                  }
+
                 } else {
-                  list($done, $warnings, $critical) = $res;
+                  $error = true;
                 }
-
-              } else {
-                $error = true;
               }
-            }
 
-            if($error) {
-              ?>
+              if($error) {
+                ?>
 
-              <fieldset>
-                <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
-                <ul style="font-size: 1.3em;">
-                  <li>El fichero debe tener <b>formato CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
-                  <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
-                </ul>
-                <p style="font-size: 1.3em;"> Por favor revise que cumple estos requisitos para poder continuar.</p>
-              </fieldset>
+                <fieldset>
+                  <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
+                  <ul style="font-size: 1.3em;">
+                    <li>El fichero debe tener <b>formato CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
+                    <li>El fichero debe tener un tamaño máximo de <b>512 KBytes</b>.</li>
+                  </ul>
+                  <p style="font-size: 1.3em;"> Por favor revise que cumple estos requisitos para poder continuar.</p>
+                </fieldset>
 
-              <div class="buttons" style="margin: 30px; clear:both;">
-                <center>
-                  <button onclick="javascript:history.go(-1);" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
-                    &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Revisar los datos del formulario&nbsp;&nbsp;
-                  </a>
-                </button>
-              </div> 
+                <div class="buttons" style="margin: 30px; clear:both;">
+                  <center>
+                    <button onclick="javascript:history.go(-1);" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+                      &nbsp;&nbsp;<i class="fa fa-arrow-left"></i>&nbsp;&nbsp;Revisar los datos del formulario&nbsp;&nbsp;
+                    </a>
+                  </button>
+                </div> 
 
-              <?php
-            } else {
-              $headers =
-              "From: Reserva de aulas online <pod-salud@us.es>\n".
-              "Reply-to: reservaulamacarena@listas.us.es\n".
-              "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
-              "Content-Transfer-Encoding: 8bit";
-
-
-              $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n";
-              $title = "Nueva reserva de aulas online (por ".$uvus.")";
-              mail("vtellez-ext@us.es",$title,$output,$headers);
-              mail("rsierra@us.es",$title,$output,$headers);
-              mail($mail,$title,$output,$headers);
-
-              ?>
-              <fieldset>
-                <h2><i class="fa fa-cloud-upload"></i>&nbsp;Fichero recibido y procesado</h2>
-                <p style="font-size: 1.3em;">Su fichero se ha recibido y procesado con éxito en el sistema de reservas, se le ha enviado un email como acuse de recibo a su cuenta de correo <b><?php echo $mail; ?></b>, incluyendo el siguiente informe:</p>
-
-                <br/>
-                <h3 style="color: #328113;"><i class="fa fa-check"></i>&nbsp; Reservas confirmadas:</h3>
-                <textarea rows="10" style="width: 100%;"><?php echo $done; ?></textarea>
-
-                <br/>
-                <br/>
-                <br/>
-                <h3 style="color:#F89200;"><i class="fa fa-warning"></i>&nbsp; Reservas NO realizadas por ocupación:</h3>
-                <textarea rows="10" style="width: 100%;"><?php echo $warnings; ?></textarea>
+                <?php
+              } else {
+                $headers =
+                "From: Reserva de aulas online <pod-salud@us.es>\n".
+                "Reply-to: reservaulamacarena@listas.us.es\n".
+                "Content-Type: text/plain; charset=UTF-8; format=flowed\n".
+                "Content-Transfer-Encoding: 8bit";
 
 
-                <br/>
-                <br/>
-                <br/>
-                <h3 style="color:#B24747;"><i class="fa fa-times"></i>&nbsp;Reservas NO realizadas por errores fatales:</h3>
-                <textarea rows="10" style="width: 100%;"><?php echo $critical; ?></textarea>
+                $output = "Reservas confirmadas:\n\n".$done."\n\nReservas NO realizadas por ocupación:\n\n".$warnings."\n\nReservas NO realizadas por errores fatales:\n\n".$critical."\n\n";
+                $title = "Nueva reserva de aulas online (por ".$uvus.")";
+                mail("vtellez-ext@us.es",$title,$output,$headers);
+                mail("rsierra@us.es",$title,$output,$headers);
+                mail($mail,$title,$output,$headers);
 
-              </fieldset>
+                ?>
+                <fieldset>
+                  <h2><i class="fa fa-cloud-upload"></i>&nbsp;Fichero recibido y procesado</h2>
+                  <p style="font-size: 1.3em;">Su fichero se ha recibido y procesado con éxito en el sistema de reservas, se le ha enviado un email como acuse de recibo a su cuenta de correo <b><?php echo $mail; ?></b>, incluyendo el siguiente informe:</p>
 
-              <div class="buttons" style="margin: 30px; clear:both;">
-                <center>
-                  <button onClick="location.href='index.php'" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
-                    &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Realizar nueva solicitud de reservas&nbsp;&nbsp;
-                  </a>
-                </button>
-              </div>
+                  <br/>
+                  <h3 style="color: #328113;"><i class="fa fa-check"></i>&nbsp; Reservas confirmadas:</h3>
+                  <textarea rows="10" style="width: 100%;"><?php echo $done; ?></textarea>
+
+                  <br/>
+                  <br/>
+                  <br/>
+                  <h3 style="color:#F89200;"><i class="fa fa-warning"></i>&nbsp; Reservas NO realizadas por ocupación:</h3>
+                  <textarea rows="10" style="width: 100%;"><?php echo $warnings; ?></textarea>
+
+
+                  <br/>
+                  <br/>
+                  <br/>
+                  <h3 style="color:#B24747;"><i class="fa fa-times"></i>&nbsp;Reservas NO realizadas por errores fatales:</h3>
+                  <textarea rows="10" style="width: 100%;"><?php echo $critical; ?></textarea>
+
+                </fieldset>
+
+                <div class="buttons" style="margin: 30px; clear:both;">
+                  <center>
+                    <button onClick="location.href='index.php'" style="height: 70px; font-size: 1.4em; background-color: #248CC7; color: #fff;">
+                      &nbsp;&nbsp;<i class="fa fa-plus"></i>&nbsp;&nbsp;Realizar nueva solicitud de reservas&nbsp;&nbsp;
+                    </a>
+                  </button>
+                </div>
 
     <?php  }//error
 
@@ -200,12 +214,11 @@ if (in_array($uvus, $uvus_perm)) {
 
         <div class="buttons" style="margin: 30px; clear:both;">
           <center>
-            <button type="submit" id="sendbtn" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;" onclick="$('#sendbtn').hide(); $('#loadingbtn').show();">
+            <button type="submit" id="sendbtn" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;" onclick="$('#sendbtn').toggle(); $('#loadingbtn').toggle();">
               &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
             </button>
 
           </form>
-
           <button id="loadingbtn" disabled="disabled" style="display: none; height: 70px; font-size: 1.4em; background-color: #78C969; color: #fff;">
             &nbsp;&nbsp;<i class="fa fa-spinner fa-spin" style="font-size: 25px;"></i>&nbsp;&nbsp;Enviando fichero CSV&nbsp;&nbsp;
           </button>

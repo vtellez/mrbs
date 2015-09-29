@@ -14,8 +14,8 @@
 
 $uvus_perm = array(
 
-					'rsierra', 
-					'vtellez-ext'
+					// 'rsierra', 
+					// 'vtellez-ext'
 					
 			);
 
