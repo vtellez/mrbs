@@ -1,21 +1,22 @@
 <?php
 
+
 /**
  * Database config template
  *
  *
- * @file     database.php
- * @category Database configuration
+ * @file     admin.php
+ * @category Adminstradores por uvus
  * @author   Víctor Téllez <tellez.victor@gmail.com>
  * @license  http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  */
 
 
-$bdhost = 'localhost';
-$bduser = 'localhost';
-$bdpass = 'localhost';
-$bdname = 'mrbs';
+$uvus_perm = array(
 
-$pod_user_id = 'pod';
+					'rsierra', 
+					'vtellez-ext'
+					
+			);
 
 ?>
