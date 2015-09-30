@@ -24,7 +24,7 @@ if (isset($_REQUEST['logout'])) {
   phpCAS::logout();
 }
 
-$perm = true;
+$perm = false;
 if (in_array($uvus, $uvus_perm)) {
   $perm = true;
 }
