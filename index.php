@@ -53,7 +53,7 @@ if (in_array($uvus, $uvus_perm)) {
             <a href="?logout=1" style="font-size: 1.1em; padding: 8px; background-color: #CA4C52; color: #fff;">&nbsp;&nbsp;<i class="fa fa-sign-out"></i>&nbsp;Cerrar sesión&nbsp;&nbsp;</a>
           </div> 
 
-          <?php if(!$perm) ?>
+          <?php if(!$perm) {?>
           <fieldset>
             <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
             <ul style="font-size: 1.3em;">
@@ -70,7 +70,8 @@ if (in_array($uvus, $uvus_perm)) {
             </button>
           </div> 
 
-          <?php } else {
+          <?php 
+            } else {
 
             if(isset($_POST['oculto']) && $_POST['oculto'] == "1"){
 
