@@ -2,7 +2,7 @@
 
 
 /**
- * Database config template
+ * UVUS admin config template
  *
  *
  * @file     admin.php
