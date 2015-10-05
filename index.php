@@ -251,6 +251,3 @@ if (isset($_REQUEST['logout'])) {
       </div>
     </body>
     </html>
-
-
-    <?php }?>
