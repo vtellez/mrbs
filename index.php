@@ -142,9 +142,7 @@ if (isset($_REQUEST['logout'])) {
                 </button>
               </div>
 
-              <?php  }//error 
-
-              else{ ?>
+              <?php } else { ?>
 
               <br/>
 
@@ -249,7 +247,6 @@ if (isset($_REQUEST['logout'])) {
               </div>
             </div>
           </div>
-          <?php } ?>
         </div>
       </div>
     </body>
