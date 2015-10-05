@@ -5,13 +5,9 @@ require_once $phpcas_path . '/CAS.php';
 
 // Initialize phpCAS
 phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
-
 // For production use set the CA certificate that is the issuer of the cert
 // phpCAS::setCasServerCACert($cas_server_ca_cert_path);
-
-// For quick testing you can disable SSL validation of the CAS server.
 phpCAS::setNoCasServerValidation();
-
 phpCAS::forceAuthentication();
 $uvus = phpCAS::getAttribute('uid');
 $nombre = phpCAS::getAttribute('cn');
@@ -50,7 +46,7 @@ if (isset($_REQUEST['logout'])) {
           if(isset($_POST['oculto']) && $_POST['oculto'] == "1"){
 
             $error = false;
-              //Manage CSV upload
+            //Manage CSV upload
             if(!empty($_FILES['file'])) {
               $name=$_FILES['file']['name'];
               $size=$_FILES['file']['size'];
@@ -74,9 +70,7 @@ if (isset($_REQUEST['logout'])) {
               }
             }
 
-            if($error) {
-              ?>
-
+            if($error) { ?>
               <fieldset>
                 <h2><i class="fa fa-times"></i>&nbsp;Se han encontrado errores</h2>
                 <ul style="font-size: 1.3em;">
@@ -142,12 +136,11 @@ if (isset($_REQUEST['logout'])) {
                 </button>
               </div>
 
-              <?php } else { ?>
+              <?php } //else no errors
 
+              } else { // no post process
+              ?>
               <br/>
-
-
-
               <fieldset>
                 <table border="0">
                   <tr>
@@ -235,7 +228,7 @@ if (isset($_REQUEST['logout'])) {
                   </center>
                 </div>
 
-                <?php }//else ?>
+                <?php } //else ?>
 
                 <div style="clear:both; font-size: 1.2em;">
                   <center>
