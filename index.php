@@ -58,7 +58,7 @@ if (isset($_REQUEST['logout'])) {
               $final_name = time()."_".$uvus.".csv";
 
               if(move_uploaded_file($tmp_name, $location.$final_name)) {
-                $res = parseFile($location.$final_name, $_POST['centro']);
+                $res = parseFile($location.$final_name, $_POST['centro'], $uvus);
                 if(!$res){
                   $error = true;
                 } else {

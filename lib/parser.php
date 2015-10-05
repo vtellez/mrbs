@@ -7,7 +7,7 @@
  * @license  http://www.apache.org/licenses/LICENSE-2.0  Apache License 2.0
  */
 
-function parseFile ($file, $centro) {
+function parseFile ($file, $centro, $uvus) {
   //Comprobamos que existe el fichero
   if (!file_exists($file)) {
     return false;
