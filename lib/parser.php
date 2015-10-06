@@ -14,7 +14,8 @@ function parseFile ($file, $centro, $uvus) {
   }
 
   //Comprobamos que existe el centro
-  $centros = array('ci','eps','etsi','etsia','etsiinf','etsa','etsie','fba','fbio','fced','fcee','fcom','fct','fder','fefp','ffa','ffilol','ffilos','ffis','fgh','fmat','fmed','fodon','fpsi','fqui','ftf',);
+  $centros = array('ci','eps','etsi','etsia','etsiinf','etsa','etsie','fba','fbio','fced','fcee','fcom','fct','fder','fefp','ffa','ffilol','ffilos','ffis','fgh','fmat','fmed','fodon','fpsi','fqui','ftf');
+
   if ( !in_array($centro, $centros) ) {
     return false;
   }
@@ -33,8 +34,9 @@ function parseFile ($file, $centro, $uvus) {
     return false;
   }
 
-  //Borramos todas las reservas previas del usuario pod
-  $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id'";
+  //Borramos todas las reservas FUTURAS del usuario pod, respetamos las previas a modo de historial
+  $ahora = time();
+  $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id' AND start_time >= $time";
   $result = $mysqli->query($query);
 
 
@@ -73,6 +75,8 @@ function parseFile ($file, $centro, $uvus) {
 
       $tinicio = strtotime($finicio);
       $tfin = strtotime($ffin);
+      //Sumamos un día completo a tfin para que reserve hasta las doce de la noche
+      $tfin += 86400;
 
 
       if(!isValidTimeStamp($tinicio) || !isValidTimeStamp($tfin) || $tinicio > $tfin) {
@@ -136,12 +140,7 @@ function parseFile ($file, $centro, $uvus) {
           $errorline = true;
           break;
         }
-
-
-
-
       }
-
     }
 
     if (!$errorline) {
@@ -163,20 +162,16 @@ function parseFile ($file, $centro, $uvus) {
         }else {
           $room = $result->fetch_assoc();
 
-            //Comprobamos que esté disponible el aula para esa fecha y horas
+          //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
 
           $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
           $result = $mysqli->query($query);
-            // echo "<p>$query</p>";
 
           if($result->num_rows > 0){
-
             $warnings .= $actual_line.$line."\n";
-            
           } else {
-
-              //Comprobamos si ya existía una reserva
+            //Comprobamos si ya existía una reserva
             $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
             $result = $mysqli->query($query);
 
