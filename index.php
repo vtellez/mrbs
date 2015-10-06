@@ -33,6 +33,7 @@ if (isset($_REQUEST['logout'])) {
 <script src="js/jquery-1.10.2.min.js"></script>
 </head>
 <body>
+  <div id="dim"></div>
   <div id="content-wrapper">
     <div class="center-wrapper">
       <div class="content">
@@ -152,7 +153,7 @@ if (isset($_REQUEST['logout'])) {
                         </p>
                         <p style="font-size: 1.2em;">Para cualquier duda o sugerencia, puede hacerlo a través de <a href="https://webapps.us.es/sos" target="_blank">nuestra plataforma de gestión de incidencias</a>.</p>
                         <div class="content-separator"></div>
-                        <form method="POST" enctype="multipart/form-data" action="index.php" >
+                        <form id="mainform" method="POST" enctype="multipart/form-data" action="index.php">
                           <input type="hidden" name="oculto" value="1" />
                           <h2><i class="fa fa-user"></i>&nbsp;Datos del solicitante</h2><br/>
                           <label>UVUS</label>
@@ -217,14 +218,11 @@ if (isset($_REQUEST['logout'])) {
 
                   <div class="buttons" style="margin: 30px; clear:both;">
                     <center>
-                      <button type="submit" id="sendbtn" style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;" onclick="$('#sendbtn').toggle(); $('#loadingbtn').toggle();">
+                      <button style="height: 70px; font-size: 1.4em; background-color: #5BAF4B; color: #fff;" onclick="$('#dim').show(); $('#mainform').submit();">
                         &nbsp;&nbsp;<i class="fa fa-send"></i>&nbsp;&nbsp;Realizar solicitud de reservas&nbsp;&nbsp;
                       </button>
 
                     </form>
-                    <button id="loadingbtn" disabled="disabled" style="display: none; height: 70px; font-size: 1.4em; background-color: #78C969; color: #fff;">
-                      &nbsp;&nbsp;<i class="fa fa-spinner fa-spin" style="font-size: 25px;"></i>&nbsp;&nbsp;Enviando fichero CSV&nbsp;&nbsp;
-                    </button>
                   </center>
                 </div>
 
