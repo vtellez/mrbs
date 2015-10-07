@@ -143,7 +143,7 @@ function parseFile ($file, $centro, $uvus) {
       }
     }
 
-    if (!$errorline) {
+    if (!$errorline && ($tfin > $ahora) ) {
 
       foreach ($reps as $repdate) {
         //calculate timestamps
