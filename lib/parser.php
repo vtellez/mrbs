@@ -168,7 +168,7 @@ function parseFile ($file, $centro, $uvus) {
           $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin";
           $result = $mysqli->query($query);
 
-          if($result->num_rows > 0){
+          if($result->num_rows > 0 && ( $tinicio > $ahora) ){
             $warnings .= $actual_line.$line."\n";
           } else {
             //Hacemos la reserva
