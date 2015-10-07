@@ -54,7 +54,7 @@ if (isset($_REQUEST['logout'])) {
               $type=$_FILES['file']['type'];
               $tmp_name=$_FILES['file']['tmp_name'];
               $error=$_FILES['file']['error'];
-              $maxsize ="102400";
+              $maxsize ="204800";
               $location='/var/www/html/reservas/areasalud/pod/temp/';
               $final_name = time()."_".$uvus.".csv";
 
@@ -77,7 +77,7 @@ if (isset($_REQUEST['logout'])) {
                 <ul style="font-size: 1.3em;">
                   <li>Su uvus debe estar dado de alta en el sistema como administrador del centro que intenta actualizar.</li>
                   <li>El fichero debe tener <b>formato CSV</b> válido (ver <a href="doc/userdoc.pdf" target="_blank">documentación</a>).</li>
-                  <li>El fichero debe tener un tamaño máximo de <b>1024 KBytes</b>.</li>
+                  <li>El fichero debe tener un tamaño máximo de <b>2048 KBytes</b>.</li>
                 </ul>
                 <p style="font-size: 1.3em;"> Por favor revise que cumple estos requisitos para poder continuar.</p>
               </fieldset>
