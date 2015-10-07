@@ -173,32 +173,32 @@ if (isset($_REQUEST['logout'])) {
                           <p style="clear:both; font-size: 1.2em;">Determine para que centro desea realizar las reservas:</a> </p>
                           <label>CENTROS ADSCRITOS</label>
                           <select name="centro" style="width: 50%;">
-                            <option value="ci">CI - CENTRO INTERNACIONAL</option>
-                            <option value="eps">EPS - ESCUELA POLITECNICA SUPERIOR</option>
-                            <option value="etsi">ETSI - ESCUELA TECNICA SUPERIOR DE INGENIERIA</option>
-                            <option value="etsia">ETSIA - ESCUELA TECNICA SUPERIOR DE INGENIERIA AGRONOMA</option>
-                            <option value="etsiinf">ETSIINF - ESCUELA TECNICA SUPERIOR DE INGENIERIA INFORMATICA</option>
-                            <option value="etsa">ETSA - ESCUELA TECNICA SUPERIOR DE ARQUITECTURA</option>
-                            <option value="etsie">ETSIE - ESCUELA TECNICA SUPERIOR DE INGENIERIA DE EDIFICIACION</option>
-                            <option value="fba">FBA - FACULTAD DE BELLAS ARTES</option>
+                            <option value="ci">CENTRO INTERNACIONAL</option>
+                            <option value="eps">ESCUELA POLITECNICA SUPERIOR</option>
+                            <option value="etsi">ESCUELA TECNICA SUPERIOR DE INGENIERIA</option>
+                            <option value="etsia">ESCUELA TECNICA SUPERIOR DE INGENIERIA AGRONOMA</option>
+                            <option value="etsiinf">ESCUELA TECNICA SUPERIOR DE INGENIERIA INFORMATICA</option>
+                            <option value="etsa">ESCUELA TECNICA SUPERIOR DE ARQUITECTURA</option>
+                            <option value="etsie">ESCUELA TECNICA SUPERIOR DE INGENIERIA DE EDIFICIACION</option>
+                            <option value="fba">FACULTAD DE BELLAS ARTES</option>
                             <option value="fbio">FACTULAD DE BIOLOGIA</option>
-                            <option value="fced">FCED - FACULTAD DE CIENCIAS DE LA EDUCACION</option>
-                            <option value="fcee">FCEE - FACULTAD DE CIENCIAS ECONOMICAS Y EMPRESARIALES</option>
-                            <option value="fcom">FCOM - FACULTAD DE COMUNICACION</option>
-                            <option value="fct">FCT - FACULTAD DE CIENCIAS DEL TRABAJO</option>
-                            <option value="fder">FDER - FACULTAD DE DERECHO</option>
-                            <option value="fefp">FEFP - FACULTAD DE ENFERMERIA, FISIOTERAPIA Y PODOLOGIA</option>
-                            <option value="ffa">FFA - FACULTAD DE FARMACIA</option>
-                            <option value="ffilol">FFILOL - FACULTAD DE FILOLOGIA</option>
-                            <option value="ffilos">FFILOS - FACULTAD DE FILOSOFIA</option>
-                            <option value="ffis">FFIS - FACULTAD DE FISICA</option>
-                            <option value="fgh">FGH - FACULTAD DE GEOGRAFIA E HISTORIA</option>
-                            <option value="fmat">FMAT - FACULTAD DE MATEMATICAS</option>
-                            <option value="fmed">FMED - FACULTAD DE MEDICINA</option>
-                            <option value="fodon">FODON - FACULTAD DE ODONTOLOGIA</option>
-                            <option value="fpsi">FPSI - FACULTAD DE PSICOLOGIA</option>
-                            <option value="fqui">FQUI - FACULTAD DE QUIMICA</option>
-                            <option value="ftf">FTF - FACULTAD DE TURISMO Y FINANZAS</option>
+                            <option value="fced">FACULTAD DE CIENCIAS DE LA EDUCACION</option>
+                            <option value="fcee">FACULTAD DE CIENCIAS ECONOMICAS Y EMPRESARIALES</option>
+                            <option value="fcom">FACULTAD DE COMUNICACION</option>
+                            <option value="fct">FACULTAD DE CIENCIAS DEL TRABAJO</option>
+                            <option value="fder">FACULTAD DE DERECHO</option>
+                            <option value="fefp">FACULTAD DE ENFERMERIA, FISIOTERAPIA Y PODOLOGIA</option>
+                            <option value="ffa">FACULTAD DE FARMACIA</option>
+                            <option value="ffilol">FACULTAD DE FILOLOGIA</option>
+                            <option value="ffilos">FACULTAD DE FILOSOFIA</option>
+                            <option value="ffis">FACULTAD DE FISICA</option>
+                            <option value="fgh">FACULTAD DE GEOGRAFIA E HISTORIA</option>
+                            <option value="fmat">FACULTAD DE MATEMATICAS</option>
+                            <option value="fmed">FACULTAD DE MEDICINA</option>
+                            <option value="fodon">FACULTAD DE ODONTOLOGIA</option>
+                            <option value="fpsi">FACULTAD DE PSICOLOGIA</option>
+                            <option value="fqui">FACULTAD DE QUIMICA</option>
+                            <option value="ftf">FACULTAD DE TURISMO Y FINANZAS</option>
                           </select>
 
                           <br/><br/><br/>
