@@ -36,7 +36,7 @@ function parseFile ($file, $centro, $uvus) {
 
   //Borramos todas las reservas FUTURAS del usuario pod, respetamos las previas a modo de historial
   $ahora = time();
-  $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id' AND start_time >= $ahora";
+  $query = "DELETE FROM mrbs_entry WHERE create_by = '$pod_user_id'";
   $result = $mysqli->query($query);
 
 
