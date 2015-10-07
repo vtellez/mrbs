@@ -165,20 +165,14 @@ function parseFile ($file, $centro, $uvus) {
           //Comprobamos que esté disponible el aula para esa fecha y horas
           $libre = true;
 
-          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by <> '$pod_user_id'";
+          $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin";
           $result = $mysqli->query($query);
 
           if($result->num_rows > 0){
             $warnings .= $actual_line.$line."\n";
           } else {
-            //Comprobamos si ya existía una reserva
-            $query = "SELECT * FROM mrbs_entry WHERE room_id = ".$room['id']." AND start_time <= $tinicio AND end_time >= $tfin AND create_by = '$pod_user_id'";
-            $result = $mysqli->query($query);
-
-            if($result->num_rows == 0) {
-                //Hacemos la reserva
-              $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
-            }
+            //Hacemos la reserva
+            $query = "INSERT INTO mrbs_entry (start_time, end_time, entry_type, repeat_id, room_id, create_by, name, profesor, type, ical_uid, ical_recur_id) VALUES ($tinicio, $tfin, 0, 0, ".$room['id'].", '$pod_user_id', '$asig', '$prof', 'B', '20131017T093000Z', '00Z')";
 
             $result = $mysqli->query($query); 
             $done .= "\n".$actual_line.$line;
